@@ -16,6 +16,12 @@ namespace DotCEP.Api
 				routeTemplate: "api/{controller}/{id}",
 				defaults: new { id = RouteParameter.Optional }
 			);
+
+			//Colocando o JSON como padrão  --> Basta remover o XML.
+			config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+			//Identando o JSON.
+			config.Formatters.JsonFormatter.Indent = true;
 		}
 	}
 }
