@@ -12,16 +12,18 @@ namespace DotCEP.Api.Controllers
 
 		public IEnumerable<Localidades.Estado> ObterLista()
 		{
+			//EX:http://localhost:8080/api/v1/estados/obterLista
+
 			return Localidades.Estado.ObterListaDeEstados(); ;
 		}
 
 		[HttpGet]
 		[Route("obterSigla")]
-		public HttpResponseMessage obterSigla(int id)
+		public string ObterSigla([FromUri]int id)
 		{
-			var result = Localidades.Estado.ObterSiglaDoEstado(id);
+			//EX: http://localhost:8080/api/v1/estados/obterSigla/?id=43
 
-			return Request.CreateResponse(System.Net.HttpStatusCode.OK, result);
+			return Localidades.Estado.ObterSiglaDoEstado(id);
 		}
 	}
 }
