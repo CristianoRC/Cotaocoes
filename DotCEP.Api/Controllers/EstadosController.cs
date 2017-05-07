@@ -8,46 +8,62 @@ namespace DotCEP.Api.Controllers
 	public class EstadosController : ApiController
 	{
 		[HttpGet]
-		[Route("obterLista")]
+		[Route("Lista")]
 
 		public IEnumerable<Localidades.Estado> ObterLista()
 		{
-			//EX:http://localhost:8080/api/v1/estados/obterLista
+			//EX:http://localhost:8080/api/v1/estados/Lista
 
 			return Localidades.Estado.ObterListaDeEstados(); ;
 		}
 
 		[HttpGet]
-		[Route("obterSigla")]
+		[Route("Siglas")]
 		public HttpResponseMessage ObterSigla([FromUri]int id)
 		{
-			//EX: http://localhost:8080/api/v1/estados/obterSigla/?id=43
+			//EX: http://localhost:8080/api/v1/estados/Sigla/?id=43
 
-			var result = Localidades.Estado.ObterSiglaDoEstado(id);
-
-			if (result.Length == 2)
+			try
 			{
-				return Request.CreateResponse(System.Net.HttpStatusCode.OK, result);
+				var result = Localidades.Estado.ObterSiglaDoEstado(id);
+
+				if (result.Length == 2)
+				{
+					return Request.CreateResponse(System.Net.HttpStatusCode.OK, result);
+				}
+				else
+				{
+					return Request.CreateResponse(System.Net.HttpStatusCode.NotFound);
+				}
 			}
-			else
+			catch
 			{
 				return Request.CreateResponse(System.Net.HttpStatusCode.NotFound);
 			}
+
+
 		}
 
 		[HttpGet]
-		[Route("obterSigla")]
+		[Route("Siglas")]
 		public HttpResponseMessage ObterSigla([FromUri] string Estado)
 		{
-			//EX: http://localhost:8080/api/v1/estados/obterSigla/?id=Rio Grade do SUl
+			//EX: http://localhost:8080/api/v1/estados/Sigla/?id=Rio Grade do SUl
 
-			var result = Localidades.Estado.ObterSiglaDoEstado(Estado); ;
-
-			if (result.Length == 2)
+			try
 			{
-				return Request.CreateResponse(System.Net.HttpStatusCode.OK, result);
+				var result = Localidades.Estado.ObterSiglaDoEstado(Estado); ;
+
+				if (result.Length == 2)
+				{
+					return Request.CreateResponse(System.Net.HttpStatusCode.OK, result);
+				}
+				else
+				{
+					return Request.CreateResponse(System.Net.HttpStatusCode.NotFound);
+				}
 			}
-			else
+			catch
 			{
 				return Request.CreateResponse(System.Net.HttpStatusCode.NotFound);
 			}
