@@ -19,11 +19,38 @@ namespace DotCEP.Api.Controllers
 
 		[HttpGet]
 		[Route("obterSigla")]
-		public string ObterSigla([FromUri]int id)
+		public HttpResponseMessage ObterSigla([FromUri]int id)
 		{
 			//EX: http://localhost:8080/api/v1/estados/obterSigla/?id=43
 
-			return Localidades.Estado.ObterSiglaDoEstado(id);
+			var result = Localidades.Estado.ObterSiglaDoEstado(id);
+
+			if (result.Length == 2)
+			{
+				return Request.CreateResponse(System.Net.HttpStatusCode.OK, result);
+			}
+			else
+			{
+				return Request.CreateResponse(System.Net.HttpStatusCode.NotFound);
+			}
+		}
+
+		[HttpGet]
+		[Route("obterSigla")]
+		public HttpResponseMessage ObterSigla([FromUri] string Estado)
+		{
+			//EX: http://localhost:8080/api/v1/estados/obterSigla/?id=Rio Grade do SUl
+
+			var result = Localidades.Estado.ObterSiglaDoEstado(Estado); ;
+
+			if (result.Length == 2)
+			{
+				return Request.CreateResponse(System.Net.HttpStatusCode.OK, result);
+			}
+			else
+			{
+				return Request.CreateResponse(System.Net.HttpStatusCode.NotFound);
+			}
 		}
 	}
 }
