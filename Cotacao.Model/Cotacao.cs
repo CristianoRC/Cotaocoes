@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Net;
+using System.Text;
 using Dapper;
 
 namespace Cotacao.Model
 {
     public class Cotacao : BancoDeDados
     {
-        public int Data { get; set; }
+        public DateTime Data { get; set; }
         public int CodigoMoeda { get; set; }
         public Double TaxaCompra { get; set; }
         public Double TaxaVenda { get; set; }
@@ -18,32 +18,50 @@ namespace Cotacao.Model
         public char Tipo { get; set; }
         public string Sigla { get; set; }
 
-        internal static void AtualizarCotacoes()
+        private static void InserirCotacoesNoBanco(IEnumerable<Cotacao> listaDeCotacoes)
+        {
+            string sql = @"insert into public.cotacoes values (@Data,@CodigoMoeda,@TaxaCompra,@TaxaVenda,
+                                                         @ParidadeCompra,@ParidadeVenda)";
+
+            AbrirConexao();
+            conexao.Execute(sql, listaDeCotacoes);
+            FecharConexao();
+        }
+
+        public static void AtualizarCotacoes()
         {
             try
             {
-                if (ObterDataUltimaCotacao() <= Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd")))
+                if (LiberarAtualizacao())
                 {
-                    var cotacoes = AtualizacoesCotacao.ListarCotacoesDiarias();
+                    var cotacoes = AtualizacoesCotacao.ListarCotacoesAtuais();
+
+                    InserirCotacoesNoBanco(cotacoes);
                 }
             }
             catch (Exception e)
             {
                 throw new Exception($"Erro ao atualizar cotações: {e.Message}");
             }
-
-
         }
-        private static int ObterDataUltimaCotacao()
+
+
+        private static bool LiberarAtualizacao()
         {
-            string sql = $"Select max(data) from cotacoes";
+            string sql = $"Select max(data) from public.cotacoes";
             try
             {
                 AbrirConexao();
-                var dataSaida = conexao.QueryFirst<int>(sql);
+                var dataSaida = conexao.QueryFirst<DateTime?>(sql);
                 FecharConexao();
 
-                return dataSaida;
+                if (dataSaida == null)
+                    return true;
+                else if ((DateTime.Now - dataSaida.Value).TotalDays >= 1)
+                    return true;
+                else
+                    return false;
+
             }
             catch (Exception e)
             {

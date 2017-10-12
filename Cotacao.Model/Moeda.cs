@@ -1,5 +1,4 @@
 using System;
-using Microsoft.Data.Sqlite;
 using Dapper;
 using System.Collections.Generic;
 
@@ -23,7 +22,7 @@ namespace Cotacao.Model
         }
         public Moeda(int codigo)
         {
-            var sql = "select * from Moedas where codigo = @CodigoMoeda";
+            var sql = "select * from public.Moedas where codigo = @CodigoMoeda";
 
             try
             {
@@ -42,7 +41,7 @@ namespace Cotacao.Model
 
         public static string ObterNomeMoeda(int codigoMoeda)
         {
-            var sql = "select nome  from Moedas where codigo = @CodigoMoeda";
+            var sql = "select nome  from public.Moedas where codigo = @CodigoMoeda";
 
             try
             {
@@ -60,7 +59,7 @@ namespace Cotacao.Model
 
         public static string ObterNomePais(int codigoMoeda)
         {
-            var sql = "select nomepais  from Moedas where codigo = @CodigoMoeda";
+            var sql = "select nomepais  from public.Moedas where codigo = @CodigoMoeda";
 
             try
             {
@@ -78,7 +77,7 @@ namespace Cotacao.Model
 
         public static string ObterCodigoPais(int codigoMoeda)
         {
-            var sql = "select CodigoPais  from Moedas where codigo = @CodigoMoeda";
+            var sql = "select CodigoPais  from public.Moedas where codigo = @CodigoMoeda";
 
             try
             {
@@ -96,7 +95,7 @@ namespace Cotacao.Model
 
         public static string ObterSiglaMoeda(int codigoMoeda)
         {
-            var sql = "select sigla from Moedas where codigo = @CodigoMoeda";
+            var sql = "select sigla from public.Moedas where codigo = @CodigoMoeda";
 
             try
             {

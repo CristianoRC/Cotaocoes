@@ -4,13 +4,12 @@ using System.Net;
 
 namespace Cotacao.Model
 {
-    public static class AtualizacoesCotacao
+    internal static class AtualizacoesCotacao
     {
-
         private static string ObterCSVCotacoes()
         {
             var data = DateTime.Now.ToString("yyyyMMdd");
-            var enderecoArquivo = $"http://www4.bcb.gov.br/Download/fechamento/20171011.csv";
+            var enderecoArquivo = $"http://www4.bcb.gov.br/Download/fechamento/{data}.csv";
 
             try
             {
@@ -31,31 +30,35 @@ namespace Cotacao.Model
 
             Cotacao CotacaoBase = new Cotacao();
 
-            CotacaoBase.Data = Convert.ToInt32(DateTime.Now.ToString("yyyyMMdd"));
-            CotacaoBase.CodigoMoeda = int.Parse(informacoes[1]);
+            CotacaoBase.Data = DateTime.Now;
+            CotacaoBase.CodigoMoeda = Convert.ToInt16(informacoes[1]);
             CotacaoBase.Tipo = Convert.ToChar(informacoes[2]);
             CotacaoBase.Sigla = informacoes[3];
 
-            CotacaoBase.TaxaCompra = Double.Parse(informacoes[4]);
-            CotacaoBase.TaxaVenda = Double.Parse(informacoes[5]);
-            CotacaoBase.ParidadeCompra = Double.Parse(informacoes[6]);
-            CotacaoBase.ParidadeVenda = Double.Parse(informacoes[4]);
+            CotacaoBase.TaxaCompra = Convert.ToDouble(informacoes[4]);
+            CotacaoBase.TaxaVenda = Convert.ToDouble(informacoes[5]);
+            CotacaoBase.ParidadeCompra = Convert.ToDouble(informacoes[6]);
+            CotacaoBase.ParidadeVenda = Convert.ToDouble(informacoes[4]);
 
             return CotacaoBase;
         }
 
-        internal static IEnumerable<Cotacao> ListarCotacoesDiarias()
+        internal static IEnumerable<Cotacao> ListarCotacoesAtuais()
         {
             try
             {
                 var listaCotacoes = new List<Cotacao>();
 
-                var linhasCSV = ObterCSVCotacoes().Replace('\r', ' ').Trim().Split('\n');
+                var linhasCSV = ObterCSVCotacoes().Replace(',', '.').Trim().Split('\n');
 
-                foreach (var linha in linhasCSV)
+                if (linhasCSV.Length != 0)
                 {
-                    listaCotacoes.Add(PreencherValoresCotacao(linha));
+                    foreach (var linha in linhasCSV)
+                    {
+                        listaCotacoes.Add(PreencherValoresCotacao(linha));
+                    }
                 }
+
 
                 return listaCotacoes;
             }

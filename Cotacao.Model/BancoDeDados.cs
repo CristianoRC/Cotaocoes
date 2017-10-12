@@ -1,13 +1,13 @@
-using Microsoft.Data.Sqlite;
 using System.Data;
+using Npgsql;
 
 namespace Cotacao.Model
 {
     public abstract class BancoDeDados
     {
-        private static readonly string Strconnection = @"Data Source=/home/cristiano/Projetos/Cotacoes/DB/Cotacao.db";
+        private static readonly string Strconnection = @"User ID=postgres;Password=cotacoes123456;Host=192.168.0.109;Port=5432;Database=Cotacoes;";
 
-        protected static SqliteConnection conexao = new SqliteConnection(Strconnection);
+        protected static NpgsqlConnection conexao = new NpgsqlConnection(Strconnection);
 
         protected static void AbrirConexao()
         {
