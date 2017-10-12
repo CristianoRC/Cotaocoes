@@ -4,7 +4,7 @@ namespace Cotacao.Model
     {
         internal static string StrConexao()
         {
-            return @"Data Source=/home/cristiano/Projetos/EstudosWebAPI/ASP NET Core/DB/Cotacao.db";
+            return @"Data Source=/home/cristiano/Projetos/Cotacoes/DB/Cotacao.db";
         }
     }
 }
