@@ -34,11 +34,6 @@ namespace Cotacao.Model
 
 
         }
-
-        private static void InserirCotacoesNoBanco(IEnumerable<Cotacao> listaDeCotacoes)
-        {
-            
-        }
         private static int ObterDataUltimaCotacao()
         {
             string sql = $"Select max(data) from cotacoes";

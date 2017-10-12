@@ -40,6 +40,24 @@ namespace Cotacao.Model
         }
 
 
+        public static string ObterNomeMoeda(int codigoMoeda)
+        {
+            var sql = "select nome  from Moedas where codigo = @CodigoMoeda";
+
+            try
+            {
+                AbrirConexao();
+                var nomePais = conexao.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
+                FecharConexao();
+
+                return nomePais;
+            }
+            catch (System.Exception e)
+            {
+                throw new Exception($"Erro ao obter o nome da moeda: {e.Message}");
+            }
+        }
+
         public static string ObterNomePais(int codigoMoeda)
         {
             var sql = "select nomepais  from Moedas where codigo = @CodigoMoeda";
