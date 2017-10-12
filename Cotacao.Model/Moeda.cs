@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Cotacao.Model
 {
-    public class Moeda
+    public class Moeda : BancoDeDados
     {
         #region Propriedades
 
@@ -27,14 +27,11 @@ namespace Cotacao.Model
 
             try
             {
-                using (SqliteConnection db = new SqliteConnection(Ferramentas.StrConexao()))
-                {
-                    db.Open();
-                    var moedaSaida = db.QueryFirst<Moeda>(sql, new { CodigoMoeda = codigo });
-                    db.Close();
+                AbrirConexao();
+                var moedaSaida = conexao.QueryFirst<Moeda>(sql, new { CodigoMoeda = codigo });
+                FecharConexao();
 
-                    atualizarPropriedades(moedaSaida);
-                }
+                atualizarPropriedades(moedaSaida);
             }
             catch (System.Exception e)
             {
@@ -49,14 +46,11 @@ namespace Cotacao.Model
 
             try
             {
-                using (SqliteConnection db = new SqliteConnection(Ferramentas.StrConexao()))
-                {
-                    db.Open();
-                    var nomePais = db.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
-                    db.Close();
+                AbrirConexao();
+                var nomePais = conexao.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
+                FecharConexao();
 
-                    return nomePais;
-                }
+                return nomePais;
             }
             catch (System.Exception e)
             {
@@ -70,14 +64,11 @@ namespace Cotacao.Model
 
             try
             {
-                using (SqliteConnection db = new SqliteConnection(Ferramentas.StrConexao()))
-                {
-                    db.Open();
-                    var codigoPais = db.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
-                    db.Close();
+                AbrirConexao();
+                var codigoPais = conexao.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
+                FecharConexao();
+                return codigoPais;
 
-                    return codigoPais;
-                }
             }
             catch (System.Exception e)
             {
@@ -91,14 +82,11 @@ namespace Cotacao.Model
 
             try
             {
-                using (SqliteConnection db = new SqliteConnection(Ferramentas.StrConexao()))
-                {
-                    db.Open();
-                    var siglaMoeda = db.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
-                    db.Close();
+                AbrirConexao();
+                var siglaMoeda = conexao.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
+                FecharConexao();
+                return siglaMoeda;
 
-                    return siglaMoeda;
-                }
             }
             catch (System.Exception e)
             {
@@ -112,14 +100,11 @@ namespace Cotacao.Model
 
             try
             {
-                using (SqliteConnection db = new SqliteConnection(Ferramentas.StrConexao()))
-                {
-                    db.Open();
-                    var tipoMoeda = db.QueryFirst<char>(sql, new { CodigoMoeda = codigoMoeda });
-                    db.Close();
+                AbrirConexao();
+                var tipoMoeda = conexao.QueryFirst<char>(sql, new { CodigoMoeda = codigoMoeda });
+                FecharConexao();
 
-                    return tipoMoeda;
-                }
+                return tipoMoeda;
             }
             catch (System.Exception e)
             {
@@ -133,14 +118,11 @@ namespace Cotacao.Model
 
             try
             {
-                using (SqliteConnection db = new SqliteConnection(Ferramentas.StrConexao()))
-                {
-                    db.Open();
-                    var listaSaida = db.Query<Moeda>(sql);
-                    db.Close();
+                AbrirConexao();
+                var listaSaida = conexao.Query<Moeda>(sql);
+                FecharConexao();
 
-                    return listaSaida;
-                }
+                return listaSaida;
             }
             catch (System.Exception e)
             {
