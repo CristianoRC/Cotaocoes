@@ -3,7 +3,7 @@
 ###### Metas
 
 - [ ] API
-- [ ] Model
+- [x] Model
 - [ ] Relatorios
 - [ ] ASP .NET MVC
 

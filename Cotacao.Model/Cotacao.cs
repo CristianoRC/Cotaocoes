@@ -14,59 +14,42 @@ namespace Cotacao.Model
         public Double ParidadeCompra { get; set; }
         public Double ParidadeVenda { get; set; }
 
-        //Informações moeda
-        public char Tipo { get; set; }
-        public string Sigla { get; set; }
 
-        private static void InserirCotacoesNoBanco(IEnumerable<Cotacao> listaDeCotacoes)
+        public Cotacao(int CodigoMoeda)
         {
-            string sql = @"insert into public.cotacoes values (@Data,@CodigoMoeda,@TaxaCompra,@TaxaVenda,
-                                                         @ParidadeCompra,@ParidadeVenda)";
-
-            AbrirConexao();
-            conexao.Execute(sql, listaDeCotacoes);
-            FecharConexao();
-        }
-
-        public static void AtualizarCotacoes()
-        {
+            var sql = @"select t.* from public.cotacoes t
+                        where t.codigomoeda = @codigo
+                        and t.data = (select MAX(s.data)
+                            from public.cotacoes s)";
             try
             {
-                if (LiberarAtualizacao())
-                {
-                    var cotacoes = AtualizacoesCotacao.ListarCotacoesAtuais();
+                AtualizacoesCotacao.AtualizarCotacoes();
 
-                    InserirCotacoesNoBanco(cotacoes);
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception($"Erro ao atualizar cotações: {e.Message}");
-            }
-        }
-
-
-        private static bool LiberarAtualizacao()
-        {
-            string sql = $"Select max(data) from public.cotacoes";
-            try
-            {
                 AbrirConexao();
-                var dataSaida = conexao.QueryFirst<DateTime?>(sql);
+                var cotacaoSaida = conexao.QueryFirst<Cotacao>(sql, new { codigo = CodigoMoeda });
                 FecharConexao();
-
-                if (dataSaida == null)
-                    return true;
-                else if ((DateTime.Now - dataSaida.Value).TotalDays >= 1)
-                    return true;
-                else
-                    return false;
-
+                atualizarPropriedades(cotacaoSaida);
             }
             catch (Exception e)
             {
-                throw new Exception($"Erro ao buscar a data da ultima cotação: {e.Message}");
+                throw new Exception($"Erro ao carregar Cotação: { e.Message}");
             }
+
+
         }
+        public Cotacao()
+        {
+        }
+
+        private void atualizarPropriedades(Cotacao cotacaoConsulta)
+        {
+            this.CodigoMoeda = cotacaoConsulta.CodigoMoeda;
+            this.Data = cotacaoConsulta.Data;
+            this.ParidadeCompra = cotacaoConsulta.ParidadeCompra;
+            this.ParidadeVenda = cotacaoConsulta.ParidadeVenda;
+            this.TaxaCompra = cotacaoConsulta.TaxaCompra;
+            this.TaxaVenda = cotacaoConsulta.TaxaVenda;
+        }
+
     }
 }

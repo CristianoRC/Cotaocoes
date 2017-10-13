@@ -6,20 +6,14 @@ namespace Cotacao.Model
 {
     public class Moeda : BancoDeDados
     {
-        #region Propriedades
-
         public int Codigo { get; private set; }
         public string Nome { get; private set; }
         public string Sigla { get; private set; }
         public string NomePais { get; private set; }
         public int CodigoPais { get; private set; }
         public char Tipo { get; private set; }
-        #endregion
 
-        public Moeda()
-        {
 
-        }
         public Moeda(int codigo)
         {
             var sql = "select * from public.Moedas where codigo = @CodigoMoeda";
@@ -39,6 +33,10 @@ namespace Cotacao.Model
         }
 
 
+        public Moeda()
+        {
+
+        }
         public static string ObterNomeMoeda(int codigoMoeda)
         {
             var sql = "select nome  from public.Moedas where codigo = @CodigoMoeda";

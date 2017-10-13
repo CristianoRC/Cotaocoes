@@ -1,72 +1,67 @@
 using System;
 using System.Collections.Generic;
-using System.Net;
+using Dapper;
 
 namespace Cotacao.Model
 {
-    internal static class AtualizacoesCotacao
+    internal class AtualizacoesCotacao : BancoDeDados
     {
-        private static string ObterCSVCotacoes()
-        {
-            var data = DateTime.Now.ToString("yyyyMMdd");
-            var enderecoArquivo = $"http://www4.bcb.gov.br/Download/fechamento/{data}.csv";
-
-            try
-            {
-                using (var webClient = new WebClient())
-                {
-                    return webClient.DownloadString(enderecoArquivo);
-                }
-            }
-            catch
-            {
-                return String.Empty;
-            }
-        }
-
-        private static Cotacao PreencherValoresCotacao(String Linha)
-        {
-            string[] informacoes = Linha.Split(';'); //Colocando cada valor separado por ';' no array
-
-            Cotacao CotacaoBase = new Cotacao();
-
-            CotacaoBase.Data = DateTime.Now;
-            CotacaoBase.CodigoMoeda = Convert.ToInt16(informacoes[1]);
-            CotacaoBase.Tipo = Convert.ToChar(informacoes[2]);
-            CotacaoBase.Sigla = informacoes[3];
-
-            CotacaoBase.TaxaCompra = Convert.ToDouble(informacoes[4]);
-            CotacaoBase.TaxaVenda = Convert.ToDouble(informacoes[5]);
-            CotacaoBase.ParidadeCompra = Convert.ToDouble(informacoes[6]);
-            CotacaoBase.ParidadeVenda = Convert.ToDouble(informacoes[4]);
-
-            return CotacaoBase;
-        }
-
-        internal static IEnumerable<Cotacao> ListarCotacoesAtuais()
+        internal static void AtualizarCotacoes()
         {
             try
             {
-                var listaCotacoes = new List<Cotacao>();
-
-                var linhasCSV = ObterCSVCotacoes().Replace(',', '.').Trim().Split('\n');
-
-                if (linhasCSV.Length != 0)
+                if (AtualizacoesCotacao.LiberarAtualizacao())
                 {
-                    foreach (var linha in linhasCSV)
-                    {
-                        listaCotacoes.Add(PreencherValoresCotacao(linha));
-                    }
+                    var cotacoes = CSV.ListarCotacoesCSV();
+
+                    InserirCotacoesNoBanco(cotacoes);
                 }
-
-
-                return listaCotacoes;
             }
             catch (Exception e)
             {
-                throw new Exception($"Erro ao converter o CSV de cotações em lista: {e.Message}");
+                throw new Exception($"Erro ao atualizar cotações: {e.Message}");
             }
+        }
+        private static bool LiberarAtualizacao()
+        {   /*
+                O sistema do Banco Central libera atualizações somente de
+                Segunda a Sexta, apartir das 13:00
+             */
 
+            if (DateTime.Now.Hour >= 13 && (DateTime.Now.DayOfWeek != DayOfWeek.Saturday &&
+                                            DateTime.Now.DayOfWeek != DayOfWeek.Sunday))
+            {
+                string sql = $"Select max(data) from public.cotacoes";
+                try
+                {
+                    AbrirConexao();
+                    var dataSaida = conexao.QueryFirst<DateTime?>(sql);
+                    FecharConexao();
+
+                    if (dataSaida == null)
+                        return true;
+                    else if ((DateTime.Now - dataSaida.Value).TotalDays >= 1)
+                        return true;
+                    else
+                        return false;
+
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Erro ao buscar a data da ultima cotação: {e.Message}");
+                }
+            }
+            else
+                return false;
+        }
+        private static void InserirCotacoesNoBanco(IEnumerable<Cotacao> listaDeCotacoes)
+        {
+            string sql = @"insert into public.cotacoes values (@Data,@CodigoMoeda,@TaxaCompra,@TaxaVenda,
+                                                         @ParidadeCompra,@ParidadeVenda)";
+
+            AbrirConexao();
+            conexao.Execute(sql, listaDeCotacoes);
+            FecharConexao();
         }
     }
 }
