@@ -32,6 +32,23 @@ namespace Cotacao.Model
             }
         }
 
+        public Moeda(string sigla)
+        {
+            var sql = "select * from public.Moedas where sigla = @siglaMoeda";
+
+            try
+            {
+                AbrirConexao();
+                var moedaSaida = conexao.QueryFirst<Moeda>(sql, new { siglaMoeda = sigla.ToUpper() });
+                FecharConexao();
+
+                atualizarPropriedades(moedaSaida);
+            }
+            catch (System.Exception e)
+            {
+                throw new Exception($"Erro ao carregar Moeda: {e.Message}");
+            }
+        }
 
         public Moeda()
         {
