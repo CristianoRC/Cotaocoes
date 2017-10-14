@@ -6,11 +6,11 @@ namespace Cotacao.Model
 {
     internal static class CSV
     {
-        internal static IEnumerable<Cotacao> ListarCotacoesCSV()
+        internal static IEnumerable<CotacaoMoeda> ListarCotacoesCSV()
         {
             try
             {
-                var listaCotacoes = new List<Cotacao>();
+                var listaCotacoes = new List<CotacaoMoeda>();
 
                 var linhasCSV = ObterCSVCotacoes().Replace(',', '.').Trim().Split('\n');
 
@@ -50,11 +50,11 @@ namespace Cotacao.Model
             }
         }
 
-        private static Cotacao PreencherValoresCotacao(String Linha)
+        private static CotacaoMoeda PreencherValoresCotacao(String Linha)
         {
             string[] informacoes = Linha.Split(';'); //Colocando cada valor separado por ';' no array
 
-            Cotacao CotacaoBase = new Cotacao();
+            var CotacaoBase = new CotacaoMoeda();
 
             CotacaoBase.Data = DateTime.Now;
             CotacaoBase.CodigoMoeda = Convert.ToInt16(informacoes[1]);

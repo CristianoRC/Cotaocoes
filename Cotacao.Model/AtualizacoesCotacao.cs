@@ -54,7 +54,7 @@ namespace Cotacao.Model
             else
                 return false;
         }
-        private static void InserirCotacoesNoBanco(IEnumerable<Cotacao> listaDeCotacoes)
+        private static void InserirCotacoesNoBanco(IEnumerable<CotacaoMoeda> listaDeCotacoes)
         {
             string sql = @"insert into public.cotacoes values (@Data,@CodigoMoeda,@TaxaCompra,@TaxaVenda,
                                                          @ParidadeCompra,@ParidadeVenda)";

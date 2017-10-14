@@ -3,9 +3,16 @@ using Dapper;
 
 namespace Cotacao.Model
 {
-    public class Convercoes : BancoDeDados
+    public class Convercao : BancoDeDados
     {
-        public static double ConverterParaReais(double Montante, string SiglaMoeda)
+        public Double ValorConvertido { get; set; }
+        public DateTime DataConsulta { get; set; }
+        public Convercao(double valor)
+        {
+            ValorConvertido = valor;
+            DataConsulta = CotacaoMoeda.ObterDataUltumaCotacao();
+        }
+        public static Convercao ConverterParaReais(double Montante, string SiglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
@@ -13,18 +20,17 @@ namespace Cotacao.Model
             try
             {
                 AbrirConexao();
-                var convercao = conexao.QueryFirst<Double>(sql, new { montante = Montante, sigla = SiglaMoeda.ToUpper() });
+                var valorConvercao = conexao.QueryFirst<Double>(sql, new { montante = Montante, sigla = SiglaMoeda.ToUpper() });
                 FecharConexao();
 
-                return convercao;
+                return new Convercao(valorConvercao);
             }
             catch (Exception e)
             {
                 throw new Exception($"Erro ao converter valor para Reais (BRL): {e.Message}");
             }
         }
-
-        public static double ConverterParaDolar(double Montante, string SiglaMoeda)
+        public static Convercao ConverterParaDolar(double Montante, string SiglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
@@ -32,10 +38,10 @@ namespace Cotacao.Model
             try
             {
                 AbrirConexao();
-                var convercao = conexao.QueryFirst<Double>(sql, new { montante = Montante, sigla = SiglaMoeda.ToUpper() });
+                var valorConvercao = conexao.QueryFirst<Double>(sql, new { montante = Montante, sigla = SiglaMoeda.ToUpper() });
                 FecharConexao();
 
-                return convercao;
+                return new Convercao(valorConvercao);
             }
             catch (Exception e)
             {
