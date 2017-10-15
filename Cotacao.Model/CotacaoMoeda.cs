@@ -32,7 +32,7 @@ namespace Cotacao.Model
             }
             catch (Exception e)
             {
-                throw new Exception($"Erro ao carregar Cotação: { e.Message}");
+                this.CodigoMoeda = -1;
             }
         }
 
@@ -48,14 +48,16 @@ namespace Cotacao.Model
                 AbrirConexao();
                 var cotacaoSaida = conexao.QueryFirst<CotacaoMoeda>(sql, new { sigla = siglaMoeda });
                 FecharConexao();
-                atualizarPropriedades(cotacaoSaida);
+
+                if(cotacaoSaida.CodigoMoeda != 0)
+                {
+                    atualizarPropriedades(cotacaoSaida);
+                }
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception($"Erro ao carregar Cotação: { e.Message}");
+                this.CodigoMoeda = -1;
             }
-
-
         }
         public CotacaoMoeda()
         {
@@ -88,6 +90,5 @@ namespace Cotacao.Model
             this.TaxaCompra = cotacaoConsulta.TaxaCompra;
             this.TaxaVenda = cotacaoConsulta.TaxaVenda;
         }
-
     }
 }

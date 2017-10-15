@@ -28,7 +28,7 @@ namespace Cotacao.Model
             }
             catch (System.Exception e)
             {
-                throw new Exception($"Erro ao carregar Moeda: {e.Message}");
+                this.Codigo = -1;
             }
         }
 
@@ -46,7 +46,7 @@ namespace Cotacao.Model
             }
             catch (System.Exception e)
             {
-                throw new Exception($"Erro ao carregar Moeda: {e.Message}");
+                this.Codigo = -1;
             }
         }
 

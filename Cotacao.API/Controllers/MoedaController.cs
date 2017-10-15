@@ -7,7 +7,7 @@ namespace Cotacao.API.Controllers
     [Route("api/[Controller]")]
     public class MoedaController : Controller
     {
-        [HttpGet("ObterInformacoes/{sigla}")]
+        [HttpGet("{sigla}")]
         public Moeda ObterInformacoes(string sigla)
         {
             return new Moeda(sigla);

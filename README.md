@@ -4,8 +4,10 @@
 
 - [x] API
 - [x] Model
+- [ ] ASP .NET MVC - Razor
+- [ ] ASP .NET MVC - JS
+- [ ] Arduino - Display
 - [ ] Relatorios
-- [ ] ASP .NET MVC
 
 <hr>
 

@@ -8,7 +8,7 @@ namespace Cotacao.API.Controllers
     public class CotacaoController : Controller
     {
 
-        [HttpGet("ObterCotacao/{siglaMoeda}")]
+        [HttpGet("{siglaMoeda}")]
         public CotacaoMoeda ObterCotacao(string siglaMoeda)
         {
             return new CotacaoMoeda(siglaMoeda);
