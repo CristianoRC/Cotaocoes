@@ -12,7 +12,7 @@ namespace Cotacao.Model
             {
                 var listaCotacoes = new List<CotacaoMoeda>();
 
-                var linhasCSV = ObterCSVCotacoes().Replace(',', '.').Trim().Split('\n');
+                var linhasCSV = ObterCSVCotacoes().Trim().Split('\n');
 
                 if (linhasCSV.Length != 0)
                 {

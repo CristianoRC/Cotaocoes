@@ -30,7 +30,7 @@ namespace Cotacao.Model
                 FecharConexao();
                 atualizarPropriedades(cotacaoSaida);
             }
-            catch (Exception e)
+            catch
             {
                 this.CodigoMoeda = -1;
             }
@@ -49,7 +49,7 @@ namespace Cotacao.Model
                 var cotacaoSaida = conexao.QueryFirst<CotacaoMoeda>(sql, new { sigla = siglaMoeda });
                 FecharConexao();
 
-                if(cotacaoSaida.CodigoMoeda != 0)
+                if (cotacaoSaida.CodigoMoeda != 0)
                 {
                     atualizarPropriedades(cotacaoSaida);
                 }
@@ -62,6 +62,87 @@ namespace Cotacao.Model
         public CotacaoMoeda()
         {
         }
+
+        public static double ObterTaxaCompra(string siglaMoeda)
+        {
+            var sql = @"select t.taxacompra from public.cotacoes t
+                        where t.codigomoeda = (select m.codigo from moedas m where m.sigla = @sigla)
+                        and t.data = (select MAX(s.data) from public.cotacoes s)";
+            try
+            {
+                AtualizacoesCotacao.AtualizarCotacoes();
+
+                AbrirConexao();
+                var taxaCompra = conexao.QueryFirst<double>(sql, new { sigla = siglaMoeda });
+                FecharConexao();
+                return taxaCompra;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Erro ao buscar a Taxa de compra - {siglaMoeda}: { e.Message}");
+            }
+        }
+
+        public static double ObterTaxaVenda(string siglaMoeda)
+        {
+            var sql = @"select t.taxavenda from public.cotacoes t
+                        where t.codigomoeda = (select m.codigo from moedas m where m.sigla = @sigla)
+                        and t.data = (select MAX(s.data) from public.cotacoes s)";
+            try
+            {
+                AtualizacoesCotacao.AtualizarCotacoes();
+
+                AbrirConexao();
+                var taxaCompra = conexao.QueryFirst<double>(sql, new { sigla = siglaMoeda });
+                FecharConexao();
+                return taxaCompra;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Erro ao buscar a Taxa de venda - {siglaMoeda}: { e.Message}");
+            }
+        }
+
+        public static double ObterParidadeCompra(string siglaMoeda)
+        {
+            var sql = @"select t.paridadecompra from public.cotacoes t
+                        where t.codigomoeda = (select m.codigo from moedas m where m.sigla = @sigla)
+                        and t.data = (select MAX(s.data) from public.cotacoes s)";
+            try
+            {
+                AtualizacoesCotacao.AtualizarCotacoes();
+
+                AbrirConexao();
+                var taxaCompra = conexao.QueryFirst<double>(sql, new { sigla = siglaMoeda });
+                FecharConexao();
+                return taxaCompra;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Erro ao buscar a paridade de compra - {siglaMoeda}: { e.Message}");
+            }
+        }
+
+        public static double ObterParidadeVenda(string siglaMoeda)
+        {
+            var sql = @"select t.paridadevenda from public.cotacoes t
+                        where t.codigomoeda = (select m.codigo from moedas m where m.sigla = @sigla)
+                        and t.data = (select MAX(s.data) from public.cotacoes s)";
+            try
+            {
+                AtualizacoesCotacao.AtualizarCotacoes();
+
+                AbrirConexao();
+                var taxaCompra = conexao.QueryFirst<double>(sql, new { sigla = siglaMoeda });
+                FecharConexao();
+                return taxaCompra;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Erro ao buscar a paridade de venda - {siglaMoeda}: { e.Message}");
+            }
+        }
+
 
         public static DateTime ObterDataUltumaCotacao()
         {
@@ -79,7 +160,6 @@ namespace Cotacao.Model
             {
                 throw new Exception($"Erro ao buscar data da ultima cotação: { e.Message}");
             }
-
         }
         private void atualizarPropriedades(CotacaoMoeda cotacaoConsulta)
         {

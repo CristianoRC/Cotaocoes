@@ -4,17 +4,16 @@ using System.Collections.Generic;
 
 namespace Cotacao.API.Controllers
 {
-    [Route("api/[Controller]")]
-    public class MoedaController : Controller
+    [Route("api/v1/[Controller]")]
+    public class MoedasController : Controller
     {
         [HttpGet("{sigla}")]
         public Moeda ObterInformacoes(string sigla)
         {
             return new Moeda(sigla);
-
         }
 
-        [HttpGet("listar")]
+        [HttpGet]
         public IEnumerable<Moeda> Listar()
         {
             return Moeda.Listar();

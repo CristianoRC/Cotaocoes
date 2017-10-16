@@ -26,7 +26,7 @@ namespace Cotacao.Model
 
                 atualizarPropriedades(moedaSaida);
             }
-            catch (System.Exception e)
+            catch
             {
                 this.Codigo = -1;
             }
@@ -44,7 +44,7 @@ namespace Cotacao.Model
 
                 atualizarPropriedades(moedaSaida);
             }
-            catch (System.Exception e)
+            catch
             {
                 this.Codigo = -1;
             }
