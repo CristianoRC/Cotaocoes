@@ -161,6 +161,25 @@ namespace Cotacao.Model
                 throw new Exception($"Erro ao buscar data da ultima cotação: { e.Message}");
             }
         }
+
+        public static IEnumerable<CotacaoMoeda> ListarCotacoes()
+        {
+            var sql = "select * from cotacoes";
+
+            try
+            {
+                AbrirConexao();
+                var listaSaida = conexao.Query<CotacaoMoeda>(sql);
+                FecharConexao();
+
+                return listaSaida;
+            }
+            catch (System.Exception e)
+            {
+                throw new Exception($"Erro ao obter a lista de moedas: {e.Message}");
+            }
+        }
+
         private void atualizarPropriedades(CotacaoMoeda cotacaoConsulta)
         {
             this.CodigoMoeda = cotacaoConsulta.CodigoMoeda;

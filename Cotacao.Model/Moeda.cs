@@ -16,7 +16,7 @@ namespace Cotacao.Model
 
         public Moeda(int codigo)
         {
-            var sql = "select * from public.Moedas where codigo = @CodigoMoeda";
+            var sql = "select * from public.Moedas where codigo = @CodigMoeda";
 
             try
             {
@@ -54,14 +54,15 @@ namespace Cotacao.Model
         {
 
         }
-        public static string ObterNomeMoeda(int codigoMoeda)
+
+        public static string ObterNomeMoeda(string siglaMoeda)
         {
-            var sql = "select nome  from public.Moedas where codigo = @CodigoMoeda";
+            var sql = "select nome  from public.Moedas where sigla = @SiglaMoeda";
 
             try
             {
                 AbrirConexao();
-                var nomePais = conexao.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
+                var nomePais = conexao.QueryFirst<string>(sql, new { SiglaMoeda = siglaMoeda });
                 FecharConexao();
 
                 return nomePais;
@@ -72,14 +73,14 @@ namespace Cotacao.Model
             }
         }
 
-        public static string ObterNomePais(int codigoMoeda)
+        public static string ObterNomePais(string siglaMoeda)
         {
-            var sql = "select nomepais  from public.Moedas where codigo = @CodigoMoeda";
+            var sql = "select nomepais  from public.Moedas where sigla = @SiglaMoeda";
 
             try
             {
                 AbrirConexao();
-                var nomePais = conexao.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
+                var nomePais = conexao.QueryFirst<string>(sql, new { SiglaMoeda = siglaMoeda });
                 FecharConexao();
 
                 return nomePais;
@@ -90,14 +91,14 @@ namespace Cotacao.Model
             }
         }
 
-        public static string ObterCodigoPais(int codigoMoeda)
+        public static string ObterCodigoPais(string siglaMoeda)
         {
-            var sql = "select CodigoPais  from public.Moedas where codigo = @CodigoMoeda";
+            var sql = "select CodigoPais  from public.Moedas where sigla = @SiglaMoeda";
 
             try
             {
                 AbrirConexao();
-                var codigoPais = conexao.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
+                var codigoPais = conexao.QueryFirst<string>(sql, new { SiglaMoeda = siglaMoeda });
                 FecharConexao();
                 return codigoPais;
 
@@ -108,16 +109,16 @@ namespace Cotacao.Model
             }
         }
 
-        public static string ObterSiglaMoeda(int codigoMoeda)
+        public static string ObterSiglaMoeda(string siglaMoeda)
         {
-            var sql = "select sigla from public.Moedas where codigo = @CodigoMoeda";
+            var sql = "select codigo from public.Moedas where sigla = @SiglaMoeda";
 
             try
             {
                 AbrirConexao();
-                var siglaMoeda = conexao.QueryFirst<string>(sql, new { CodigoMoeda = codigoMoeda });
+                var codigoMoeda = conexao.QueryFirst<string>(sql, new { SiglaMoeda = siglaMoeda });
                 FecharConexao();
-                return siglaMoeda;
+                return codigoMoeda;
 
             }
             catch (System.Exception e)
@@ -126,14 +127,14 @@ namespace Cotacao.Model
             }
         }
 
-        public static char ObterTipoMoeda(int codigoMoeda)
+        public static char ObterTipoMoeda(string siglaMoeda)
         {
-            var sql = "select tipo from Moedas where codigo = @CodigoMoeda";
+            var sql = "select tipo from Moedas where sigla = @SiglaMoeda";
 
             try
             {
                 AbrirConexao();
-                var tipoMoeda = conexao.QueryFirst<char>(sql, new { CodigoMoeda = codigoMoeda });
+                var tipoMoeda = conexao.QueryFirst<char>(sql, new { SiglaMoeda = siglaMoeda });
                 FecharConexao();
 
                 return tipoMoeda;
