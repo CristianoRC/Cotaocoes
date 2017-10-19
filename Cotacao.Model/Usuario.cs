@@ -15,8 +15,6 @@ namespace Cotacao.Model
 
         public bool Administrador { get; set; }
 
-        public bool Ativo { get; set; }
-
         public Usuario(string email)
         {
             try
@@ -27,7 +25,6 @@ namespace Cotacao.Model
                 FecharConexao();
 
                 this.Administrador = usuTemp.Administrador;
-                this.Ativo = usuTemp.Ativo;
                 this.Email = usuTemp.Email;
                 this.ID = usuTemp.ID;
                 this.Nome = usuTemp.Nome;
@@ -38,12 +35,14 @@ namespace Cotacao.Model
                 throw new Exception($"Erro ao carregar informações do usuário: {e.Message}");
             }
         }
+
         public Usuario() { }
 
-        public static void Cadastrar(Usuario usuario)
+
+        public static void AtualizarCadastro(Usuario usuario)
         {
-            var sql = @"Insert into usuarios (nome,email,senha,administrador,ativo) 
-                        values(@nome,@email,@senha,@administrador,@ativo)";
+            var sql = @"update usuarios set (nome,email,senha,administrador) =
+                        (@nome,@email,@senha,@administrador) where email = @email";
 
             usuario.Senha = Ferramentas.Criptografar(usuario.Senha);
             usuario.Email = usuario.Email.ToLower();
@@ -62,6 +61,46 @@ namespace Cotacao.Model
                     throw new Exception($"Erro ao cadastrar usuário: {e.Message}");
             }
         }
+
+        public static void Cadastrar(Usuario usuario)
+        {
+            var sql = @"Insert into usuarios (nome,email,senha,administrador) 
+                        values(@nome,@email,@senha,@administrador)";
+
+            usuario.Senha = Ferramentas.Criptografar(usuario.Senha);
+            usuario.Email = usuario.Email.ToLower();
+
+            try
+            {
+                AbrirConexao();
+                conexao.Execute(sql, usuario);
+                FecharConexao();
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("duplicar valor da chave viola a restrição de unicidade"))
+                    throw new Exception("Email já cadastrado.");
+                else
+                    throw new Exception($"Erro ao cadastrar usuário: {e.Message}");
+            }
+        }
+
+        public static void Deletar(string email)
+        {
+            var sql = "delete from usuarios where email = @EmailUsuario";
+
+            try
+            {
+                AbrirConexao();
+                conexao.Execute(sql, new { EmailUsuario = email.ToLower() });
+                FecharConexao();
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Erro ao deletar usuário: {e.Message}");
+            }
+        }
+
         public static bool Autenticar(string email, string senha)
         {
             var sql = @"select AutenticarUsuario(@EmailUsuario, @SenhaUsuario)";
