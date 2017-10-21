@@ -1,0 +1,60 @@
+﻿@page
+@model Cotacao.Model.CotacaoMoeda
+
+<div class="cpmtainer">
+    <div clas class="row">
+        <h1 class="col-sm-offset-5">Lista de Cotações</h1>      
+    </div>
+
+    <div class=row>
+        <div class="col-sm-2" style="text-align:center">
+            <h5 class="bg-success">Moeda tipo A</h5>
+            <h5 class="bg-info">Moeda tipo B</h5>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="table-responsive">
+        <table class="table table-hover">
+            <tr>
+                <th>Data</th>
+                <th>Codigo</th>
+                <th>Taxa de compra</th>
+                <th>Taxa de venda</th>
+                <th>Paridade de compra</th>
+                <th>Paridade de venda</th>
+            </tr>
+        @{
+            var listaCotacoes = Cotacao.Model.CotacaoMoeda.ListarCotacoes();
+
+            foreach(var item in listaCotacoes)
+            {
+                char tipoMoeda = @Cotacao.Model.Moeda.ObterTipoMoeda(item.CodigoMoeda);
+                string CorTipo = " ";
+
+                if(tipoMoeda == 'A')
+                {
+                    CorTipo = "bg-success";
+                }
+                else
+                {
+                    CorTipo = "bg-info";
+                }
+
+                <tr class=@CorTipo>
+                    <td>@item.Data</td>
+                    <td>@Cotacao.Model.Moeda.ObterNomeMoeda(item.CodigoMoeda)</td>
+                    <td>@item.TaxaCompra</td>
+                    <td>@item.TaxaVenda</td>
+                    <td>@item.ParidadeCompra</td>
+                    <td>@item.ParidadeVenda</td>
+                </tr>
+            }
+        }
+
+        </table>
+        </div>
+    </div>
+</div>

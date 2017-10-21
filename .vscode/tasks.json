@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "${workspaceRoot}/Cotacao.API/Cotacao.API.csproj"
+                "${workspaceRoot}/Cotacao.MVC/Cotacao.MVC.csproj"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
