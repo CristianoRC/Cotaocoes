@@ -1,0 +1,20 @@
+﻿@page
+
+
+<div class="container" style="padding-top:50px;">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h4>Informações</h4></div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Código:</strong> @ViewBag.Moeda.Codigo</li>
+        <li class="list-group-item"><strong>Sigla:</strong> @ViewBag.Moeda.Sigla</li>
+        <li class="list-group-item"><strong>Tipo:</strong> @ViewBag.Moeda.Tipo</li>
+        <li class="list-group-item"><strong>Nome:</strong> @ViewBag.Moeda.Nome</li>        
+        <li class="list-group-item"><strong>Cód. País:</strong> @ViewBag.Moeda.CodigoPais</li>
+        <li class="list-group-item"><strong>País:</strong>@ViewBag.Moeda.NomePais</li>
+      </ul>
+
+      <h6>*Em breve relatórios e gráficos sobre a moeda @ViewBag.Moeda.Nome.</h6>
+    </div>
+  </div>    
+</div>

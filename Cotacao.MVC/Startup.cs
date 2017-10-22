@@ -42,7 +42,7 @@ namespace Cotacao.MVC
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Cotacoes}/{action=Index}/{id?}");
+                    template: "{controller=Cotacao}/{action=Index}/{id?}");
             });
         }
     }

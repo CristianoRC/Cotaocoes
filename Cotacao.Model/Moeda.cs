@@ -16,7 +16,7 @@ namespace Cotacao.Model
 
         public Moeda(int codigo)
         {
-            var sql = "select * from public.Moedas where codigo = @CodigMoeda";
+            var sql = "select * from public.Moedas where codigo = @CodigoMoeda";
 
             try
             {
