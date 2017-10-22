@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table">
             <tr>
                 <th>Data</th>
                 <th>Codigo</th>
@@ -27,7 +27,7 @@
                 <th>Paridade de venda</th>
             </tr>
         @{
-            var listaCotacoes = Cotacao.Model.CotacaoMoeda.ListarCotacoes();
+            var listaCotacoes = Cotacao.Model.CotacaoMoeda.ListarUltimasCotacoes();
 
             foreach(var item in listaCotacoes)
             {

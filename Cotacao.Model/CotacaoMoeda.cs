@@ -162,6 +162,25 @@ namespace Cotacao.Model
             }
         }
 
+        public static IEnumerable<CotacaoMoeda> ListarUltimasCotacoes()
+        {
+            var sql = @"select * from cotacoes where data = 
+                               (select MAX(s.data) from public.cotacoes s)";
+
+            try
+            {
+                AbrirConexao();
+                var listaSaida = conexao.Query<CotacaoMoeda>(sql);
+                FecharConexao();
+
+                return listaSaida;
+            }
+            catch (System.Exception e)
+            {
+                throw new Exception($"Erro ao obter a lista de moedas: {e.Message}");
+            }
+        }
+
         public static IEnumerable<CotacaoMoeda> ListarCotacoes()
         {
             var sql = "select * from cotacoes";
