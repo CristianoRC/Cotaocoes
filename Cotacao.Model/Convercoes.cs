@@ -25,9 +25,9 @@ namespace Cotacao.Model
 
                 return new Convercao(valorConvercao);
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception($"Erro ao converter valor para Reais (BRL): {e.Message}");
+                return new Convercao(-1);
             }
         }
         public static Convercao ConverterParaDolar(double Montante, string SiglaMoeda)
@@ -43,9 +43,9 @@ namespace Cotacao.Model
 
                 return new Convercao(valorConvercao);
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception($"Erro ao converter valor para Reais (BRL): {e.Message}");
+                return new Convercao(-1);
             }
         }
     }

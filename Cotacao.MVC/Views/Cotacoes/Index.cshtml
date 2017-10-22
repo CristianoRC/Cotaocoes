@@ -19,12 +19,12 @@
         <div class="table-responsive">
         <table class="table">
             <tr>
-                <th>Data</th>
-                <th>Codigo</th>
-                <th>Taxa de compra</th>
-                <th>Taxa de venda</th>
-                <th>Paridade de compra</th>
-                <th>Paridade de venda</th>
+                <th style="text-align:center">Data</th>
+                <th style="text-align:center">Codigo</th>
+                <th style="text-align:center">Taxa de compra</th>
+                <th style="text-align:center">Taxa de venda</th>
+                <th style="text-align:center">Paridade de compra</th>
+                <th style="text-align:center">Paridade de venda</th>
             </tr>
         @{
             var listaCotacoes = Cotacao.Model.CotacaoMoeda.ListarUltimasCotacoes();
@@ -43,7 +43,7 @@
                     CorTipo = "bg-info";
                 }
 
-                <tr class=@CorTipo>
+                <tr class=@CorTipo style="text-align:center">
                     <td>@item.Data</td>
                     <td>@Cotacao.Model.Moeda.ObterNomeMoeda(item.CodigoMoeda)</td>
                     <td>@item.TaxaCompra</td>
