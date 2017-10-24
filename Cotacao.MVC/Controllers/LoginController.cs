@@ -7,6 +7,7 @@ namespace Cotacao.MVC.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["Title"] = "Login";
             return View();
         }
 
