@@ -118,7 +118,7 @@ namespace Cotacao.Model
             }
             catch (Exception e)
             {
-                throw new Exception($"Erro ao cadastrar usuário: {e.Message}");
+                throw new Exception($"Erro ao autenticar usuário: {e.Message}");
             }
         }
     }

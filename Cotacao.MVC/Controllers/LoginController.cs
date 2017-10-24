@@ -8,19 +8,22 @@ namespace Cotacao.MVC.Controllers
         public IActionResult Index()
         {
             ViewData["Title"] = "Login";
+            ViewBag.Error = false;
             return View();
         }
 
         [HttpPost]
-        public string Autenticar([FromForm]string Email, [FromForm]string Senha)
+        public IActionResult Index([FromForm]string Email, [FromForm]string Senha)
         {
-            if (Usuario.Autenticar(Email,Senha))
+            if (Usuario.Autenticar(Email, Senha))
             {
-                return "Logado comm sucesso!";
+                throw new System.Exception();
             }
             else
             {
-                return "Login ou senha inválidos!";
+                ViewBag.Error = true;
+                ViewData["Title"] = "Login";
+                return View();
             }
         }
     }

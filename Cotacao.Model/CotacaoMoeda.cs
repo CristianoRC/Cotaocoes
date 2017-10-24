@@ -17,6 +17,8 @@ namespace Cotacao.Model
 
         public CotacaoMoeda(int CodigoMoeda)
         {
+            AtualizacoesCotacao.AtualizarCotacoes();
+
             var sql = @"select t.* from public.cotacoes t
                         where t.codigomoeda = @codigo
                         and t.data = (select MAX(s.data)
@@ -38,6 +40,8 @@ namespace Cotacao.Model
 
         public CotacaoMoeda(string siglaMoeda)
         {
+            AtualizacoesCotacao.AtualizarCotacoes();
+
             var sql = @"select t.* from public.cotacoes t
                         where t.codigomoeda = (select m.codigo from moedas m where m.sigla = @sigla)
                         and t.data = (select MAX(s.data) from public.cotacoes s)";
@@ -65,6 +69,8 @@ namespace Cotacao.Model
 
         public static double ObterTaxaCompra(string siglaMoeda)
         {
+            AtualizacoesCotacao.AtualizarCotacoes();
+
             var sql = @"select t.taxacompra from public.cotacoes t
                         where t.codigomoeda = (select m.codigo from moedas m where m.sigla = @sigla)
                         and t.data = (select MAX(s.data) from public.cotacoes s)";
@@ -85,6 +91,8 @@ namespace Cotacao.Model
 
         public static double ObterTaxaVenda(string siglaMoeda)
         {
+            AtualizacoesCotacao.AtualizarCotacoes();
+
             var sql = @"select t.taxavenda from public.cotacoes t
                         where t.codigomoeda = (select m.codigo from moedas m where m.sigla = @sigla)
                         and t.data = (select MAX(s.data) from public.cotacoes s)";
@@ -105,6 +113,8 @@ namespace Cotacao.Model
 
         public static double ObterParidadeCompra(string siglaMoeda)
         {
+            AtualizacoesCotacao.AtualizarCotacoes();
+
             var sql = @"select t.paridadecompra from public.cotacoes t
                         where t.codigomoeda = (select m.codigo from moedas m where m.sigla = @sigla)
                         and t.data = (select MAX(s.data) from public.cotacoes s)";
@@ -125,6 +135,8 @@ namespace Cotacao.Model
 
         public static double ObterParidadeVenda(string siglaMoeda)
         {
+            AtualizacoesCotacao.AtualizarCotacoes();
+
             var sql = @"select t.paridadevenda from public.cotacoes t
                         where t.codigomoeda = (select m.codigo from moedas m where m.sigla = @sigla)
                         and t.data = (select MAX(s.data) from public.cotacoes s)";
@@ -146,6 +158,8 @@ namespace Cotacao.Model
 
         public static DateTime ObterDataUltumaCotacao()
         {
+            AtualizacoesCotacao.AtualizarCotacoes();
+
             var sql = @"select MAX(s.data)from public.cotacoes s";
             try
             {
@@ -164,6 +178,8 @@ namespace Cotacao.Model
 
         public static IEnumerable<CotacaoMoeda> ListarUltimasCotacoes()
         {
+            AtualizacoesCotacao.AtualizarCotacoes();
+
             var sql = @"select * from cotacoes where data = 
                                (select MAX(s.data) from public.cotacoes s)";
 
@@ -183,6 +199,8 @@ namespace Cotacao.Model
 
         public static IEnumerable<CotacaoMoeda> ListarCotacoes()
         {
+            AtualizacoesCotacao.AtualizarCotacoes();
+
             var sql = "select * from cotacoes";
 
             try

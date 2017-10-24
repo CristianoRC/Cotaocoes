@@ -1,16 +1,37 @@
 ﻿@page
 
+@{
+
+}
+
 <head>
 <link rel="stylesheet" href="~/css/styleLogin.css" />
 </head>
   
 <div class="container">
-  <div class="wrapper" action="Login/Autenticar" method="get">
-    <form class="form-signin">
+  <div class="wrapper">
+    <form class="form-signin" action="Login" method="post">
 		<center><img src="https://cdn2.iconfinder.com/data/icons/flat-icons-19/512/Coin.png" height="100px;"></center>
-		<input style="margin-top:25px" type="text" class="form-control" name="Email" placeholder="Email" required="" autofocus="" />
+    <input style="margin-top:25px" type="text" class="form-control" name="Email" placeholder="Email" required="" autofocus="" />
 		<input style="margin-top:10px" type="password" class="form-control" name="Senha" placeholder="Senha" required=""/>      
-		<button style="margin-top:30px" class="btn btn-lg btn-primary btn-block" type="submit">Logar</button>   
+		
+    <div id="erro" class="alert alert-danger" style="margin-top:20px;display: none;">
+       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <span class="glyphicon glyphicon-asterisk"></span><strong> Erro:</strong> login ou senha inválidos
+    </div>
+
+    <button style="margin-top:30px" class="btn btn-lg btn-primary btn-block" type="submit">Logar</button>   
     </form>
   </div>
 </div>
+
+@{
+  if(@ViewBag.Error == true)
+  {
+    <script>
+      var MensagemErro = document.getElementById("erro");
+      MensagemErro.style.display = "block";
+    </script>
+  }
+}
+    
