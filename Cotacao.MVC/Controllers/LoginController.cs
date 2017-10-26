@@ -17,7 +17,7 @@ namespace Cotacao.MVC.Controllers
         {
             if (Usuario.Autenticar(Email, Senha))
             {
-                throw new System.Exception();
+                return RedirectToAction("Index", "Home", new { area = "admin" });
                 //TODO: Implementar sistema de controle de acesso em páginas específicas
             }
             else
