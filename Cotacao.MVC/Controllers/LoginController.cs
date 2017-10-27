@@ -17,13 +17,15 @@ namespace Cotacao.MVC.Controllers
         {
             if (Usuario.Autenticar(Email, Senha))
             {
-                return RedirectToAction("Index", "Home", new { area = "admin" });
+                return RedirectToAction("Index", "Home", new { area = "admin"});
                 //TODO: Implementar sistema de controle de acesso em páginas específicas
             }
             else
             {
                 ViewBag.Error = true;
+                ViewBag.UltimoEmail = Email;
                 ViewData["Title"] = "Login";
+                
                 return View();
             }
         }
