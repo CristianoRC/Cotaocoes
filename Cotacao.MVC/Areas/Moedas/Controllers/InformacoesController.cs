@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Cotacao.Model;
 using System.Collections.Generic;
 
-namespace Cotacao.MVC.Controllers
+
+namespace Cotacao.MVC.Areas.Moedas.Controllers
 {
-    public class MoedaController : Controller
+    [Area("Moedas")]
+    public class InformacoesController : Controller
     {
         public IActionResult Index()
         {
@@ -16,7 +18,7 @@ namespace Cotacao.MVC.Controllers
         public IActionResult Sobre(int Id)
         {
             
-            var _moeda = new Moeda(Id);
+            var _moeda = new Model.Moeda(Id);
             ViewBag.Moeda = _moeda;
             ViewData["Title"] = $"{_moeda.Sigla}";
 

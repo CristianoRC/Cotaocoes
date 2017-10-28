@@ -1,9 +1,9 @@
 using Cotacao.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cotacao.MVC.Areas.Admin.Controllers
+namespace Cotacao.MVC.Areas.PainelAdministrativo.Controllers
 {
-    [Area("Admin")]
+    [Area("PainelAdministrativo")]
     public class HomeController : Controller
     {
         public IActionResult Index()

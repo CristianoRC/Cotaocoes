@@ -26,14 +26,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Cotacao" asp-action="Index" class="navbar-brand">Cotações</a>
+                <a asp-area="Moedas" asp-controller="Cotacao" asp-action="Index" class="navbar-brand">Sistema de cotações</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Cotacao" asp-action="Index">Lista de cotações</a></li>
-                    <li><a asp-area="" asp-controller="Conversao" asp-action="Index">Converções</a></li>
-                    <li><a asp-area="" asp-controller="Moeda" asp-action="Index">Moeda</a></li>
-                    <li><a asp-area="" asp-controller="Login" asp-action="Index">Login</a></li>
+                    <li><a asp-area="Moedas" asp-controller="Cotacao" asp-action="Index">Cotações do dia</a></li>
+                    <li><a asp-area="Moedas" asp-controller="Conversao" asp-action="Index">Conversões</a></li>
+                    <li><a asp-area="Moedas" asp-controller="Informacoes" asp-action="Index">Moedas</a></li>
+                    <li><a asp-area="Usuarios" asp-controller="Autenticacao" asp-action="Index">Login</a></li>
                 </ul>
             </div>
         </div>

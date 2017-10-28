@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Cotacao.Model;
 
-namespace Cotacao.MVC.Controllers
+namespace Cotacao.MVC.Areas.Moedas.Controllers
 {
+    [Area("Moedas")]
     public class ConversaoController : Controller
     {
         public IActionResult Index()
@@ -11,7 +12,7 @@ namespace Cotacao.MVC.Controllers
             ViewBag.Data = TempData["Data"];
             ViewBag.Valor = TempData["Valor"];
 
-            return View();
+            return View("Index");
         }
 
         [HttpPost]
