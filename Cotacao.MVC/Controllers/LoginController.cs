@@ -17,6 +17,7 @@ namespace Cotacao.MVC.Controllers
         {
             if (Usuario.Autenticar(Email, Senha))
             {
+                TempData["Nome"] = Usuario.ObterNome(Email);
                 return RedirectToAction("Index", "Home", new { area = "admin"});
                 //TODO: Implementar sistema de controle de acesso em páginas específicas
             }
@@ -52,7 +53,8 @@ namespace Cotacao.MVC.Controllers
 
                 Usuario.Cadastrar(_usuario);
 
-                return View();
+                ViewBag.UltimoEmail = Email;
+                return RedirectToAction("Index");
             }
             catch (System.Exception e)
             {

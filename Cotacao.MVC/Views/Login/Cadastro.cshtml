@@ -39,7 +39,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="SenhaRepetuda">Repita sua senha</label>
         <div class="col-md-4">
-          <input id="SenhaRepetida" name="SenhaRepetida" type="password" placeholder="Repita sua senha" class="form-control input-md" required="" onfocusout="validaSenha(this)">
+          <input id="SenhaRepetida" name="SenhaRepetida" type="password" placeholder="Repita sua senha" class="form-control input-md" onchange="validarSenha()" required="">
           
         </div>
       </div>
@@ -62,11 +62,12 @@
 </div>
 
 <script>
-  function validaSenha (input)
+  function validarSenha()
   { 
-    if (input.value != document.getElementById('Senha').value)
+    if (document.getElementById("SenhaRepetida").value != document.getElementById("Senha").value)
     {
       input.setCustomValidity('Repita a senha corretamente');
+      alert("Erro!");
     } 
     else 
     {

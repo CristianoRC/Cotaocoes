@@ -3,7 +3,7 @@ using Dapper;
 
 namespace Cotacao.Model
 {
-    public class Convercao : BancoDeDados
+    public class Convercao : Repositorio
     {
         public Double ValorConvertido { get; set; }
         public DateTime DataConsulta { get; set; }

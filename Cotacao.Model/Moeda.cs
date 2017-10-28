@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Cotacao.Model
 {
-    public class Moeda : BancoDeDados
+    public class Moeda : Repositorio
     {
         public int Codigo { get; private set; }
         public string Nome { get; private set; }

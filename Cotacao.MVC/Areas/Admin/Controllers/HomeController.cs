@@ -1,3 +1,4 @@
+using Cotacao.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cotacao.MVC.Areas.Admin.Controllers
@@ -5,11 +6,11 @@ namespace Cotacao.MVC.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        public IActionResult Index(string nome)
+        public IActionResult Index()
         {
-             ViewData["Title"] = "Início";
-             ViewData["NomeUsuario"] = nome;
-             
+            ViewData["Title"] = "Início";
+            ViewData["NomeUsuario"] = TempData["Nome"];
+
             return View();
         }
     }

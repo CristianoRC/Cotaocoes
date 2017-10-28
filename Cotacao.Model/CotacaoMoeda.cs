@@ -5,7 +5,7 @@ using Dapper;
 
 namespace Cotacao.Model
 {
-    public class CotacaoMoeda : BancoDeDados
+    public class CotacaoMoeda : Repositorio
     {
         public DateTime Data { get; set; }
         public int CodigoMoeda { get; set; }

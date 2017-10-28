@@ -1,7 +1,7 @@
 ﻿@page
 @model Cotacao.Model.CotacaoMoeda
 
-<div class="cpmtainer">
+<div class="container">
     <div clas class="row">
         <h1 class="col-sm-offset-5">Lista de Cotações</h1>      
     </div>
@@ -44,7 +44,7 @@
                 }
 
                 <tr class=@CorTipo style="text-align:center">
-                    <td>@item.Data</td>
+                    <td>@item.Data.ToString("dd/MM/yyyy")</td>
                     <td>@Cotacao.Model.Moeda.ObterNomeMoeda(item.CodigoMoeda)</td>
                     <td>@item.TaxaCompra</td>
                     <td>@item.TaxaVenda</td>

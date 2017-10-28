@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Dapper;
 
 namespace Cotacao.Model
 {
-    public class Usuario : BancoDeDados
+    public class Usuario : Repositorio
     {
         public int ID { get; set; }
 
@@ -20,7 +22,7 @@ namespace Cotacao.Model
             try
             {
                 AbrirConexao();
-                var usuTemp = conexao.QueryFirst<Usuario>("select * from usuarios where email = @EmailUsu",
+                var usuTemp = conexao.QueryFirst<Usuario>("select id,nome,email,administrador from usuarios where email = @EmailUsu",
                                                      new { EmailUsu = email.ToLower() });
                 FecharConexao();
 
@@ -119,6 +121,31 @@ namespace Cotacao.Model
             catch (Exception e)
             {
                 throw new Exception($"Erro ao autenticar usuário: {e.Message}");
+            }
+        }
+
+        public static string ObterNome(string email)
+        {
+            try
+            {
+                return conexao.QueryFirst<string>("select nome from usuarios where email = @EmailUsu",
+                                                    new { EmailUsu = email.ToLower() });
+            }
+            catch (System.Exception e)
+            {
+                throw new Exception($"Erro ao buscar nome do usuário: {e.Message}");
+            }
+        }
+
+        public static IEnumerable<Usuario> Listar()
+        {
+            try
+            {
+                return conexao.Query<Usuario>("select ID, Nome, Email, Administrador from usuarios");
+            }
+            catch (System.Exception e)
+            {
+                throw new Exception($"Erro ao buscar nome do usuário: {e.Message}");
             }
         }
     }

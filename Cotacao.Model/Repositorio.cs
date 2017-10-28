@@ -1,15 +1,16 @@
 using System.Data;
 using Npgsql;
+using Dapper;
 
 namespace Cotacao.Model
 {
-    public abstract class BancoDeDados
+    public abstract class Repositorio 
     {
         private static readonly string Strconnection = @"User ID=postgres;Password=cotacoes123456;Host=192.168.0.109;Port=5432;Database=Cotacoes;";
 
-        protected static NpgsqlConnection conexao = new NpgsqlConnection(Strconnection);
+        internal static NpgsqlConnection conexao = new NpgsqlConnection(Strconnection);
 
-        protected static void AbrirConexao()
+        internal static void AbrirConexao()
         {
             try
             {
@@ -24,7 +25,7 @@ namespace Cotacao.Model
             }
         }
 
-        protected static void FecharConexao()
+        internal static void FecharConexao()
         {
             try
             {

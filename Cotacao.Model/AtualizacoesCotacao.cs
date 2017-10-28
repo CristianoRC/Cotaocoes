@@ -4,7 +4,7 @@ using Dapper;
 
 namespace Cotacao.Model
 {
-    internal class AtualizacoesCotacao : BancoDeDados
+    internal class AtualizacoesCotacao : Repositorio
     {
         internal static void AtualizarCotacoes()
         {
