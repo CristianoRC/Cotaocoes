@@ -1,4 +1,4 @@
-﻿@page 
+﻿@page
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,7 +16,7 @@
     </tr>
 
     @{
-      var listagem = Cotacao.Model.Moeda.Listar();
+      var listagem = Cotacoes.Model.MoedaService.Listar();
 
       foreach(var item in @listagem)
       {
@@ -30,5 +30,4 @@
     }
   </table>
   </div>
-  
 </div>

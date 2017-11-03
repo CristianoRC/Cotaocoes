@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Cotacao.Model;
+using Cotacoes.Model;
 
-namespace Cotacao.MVC.Areas.Autenticacao.Controllers
+namespace Cotacoes.MVC.Areas.Autenticacao.Controllers
 {
     [Area("Usuarios")]
     public class AutenticacaoController : Controller
@@ -16,9 +16,9 @@ namespace Cotacao.MVC.Areas.Autenticacao.Controllers
         [HttpPost]
         public IActionResult Index([FromForm]string Email, [FromForm]string Senha)
         {
-            if (Model.Usuario.Autenticar(Email, Senha))
+            if (UsuarioService.Autenticar(Email, Senha))
             {
-                TempData["Nome"] = Usuario.ObterNome(Email);
+                TempData["Nome"] = UsuarioService.ObterNome(Email);
                 return RedirectToAction("Index", "Home", new { area = "PainelAdministrativo"});
                 //TODO: Implementar sistema de controle de acesso em páginas específicas
             }

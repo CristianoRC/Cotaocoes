@@ -23,7 +23,6 @@ namespace Cotacoes.Model
                 return new Conversao(-1);
             }
         }
-        
         internal static Conversao ConverterParaDolar(double Montante, string SiglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();

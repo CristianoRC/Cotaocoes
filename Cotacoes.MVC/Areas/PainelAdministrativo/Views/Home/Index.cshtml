@@ -1,4 +1,5 @@
 ﻿@page
+@using Cotacoes.Model
 
 @{
     Layout = "~/Views/Shared/_Admin.cshtml";
@@ -14,27 +15,27 @@
          <th style="text-align:center">Ações</th>
       </tr>
       @{
-      var listaUsu = Cotacao.Model.Usuario.Listar();
-      foreach(var item in listaUsu)
-      {
-      <tr style="text-align:center">
-         <td>@item.ID</td>
-         <td>@item.Nome</td>
-         <td>@item.Email</td>
-         @if(@item.Administrador == false)
-         {
-         <td>Não</td>
-         }
-         else
-         {
-         <td>Sim</td>
-         }
-         <td>
-            <span class="label label-warning">@Html.ActionLink("Editar", "Action", "Controller", new { id = @item.ID }, new{@style="color:White"})</span> 
-            <span class="label label-danger">@Html.ActionLink("Deletar", "Action", "Controller", new { id = @item.ID },new{@style="color:White"})</span>
-         </td>
-      </tr>
-      }
+        var listaUsu = UsuarioService.Listar();
+        foreach(var item in listaUsu)
+        {
+            <tr style="text-align:center">
+                <td>@item.ID</td>
+                <td>@item.Nome</td>
+                <td>@item.Email</td>
+                @if(@item.Administrador == false)
+                {
+                <td>Não</td>
+                }
+                else
+                {
+                <td>Sim</td>
+                }
+                <td>
+                    <span class="label label-warning">@Html.ActionLink("Editar", "Action", "Controller", new { id = @item.ID }, new{@style="color:White"})</span> 
+                    <span class="label label-danger">@Html.ActionLink("Deletar", "Action", "Controller", new { id = @item.ID },new{@style="color:White"})</span>
+                </td>
+            </tr>
+        }
       }
    </table>
 </div>

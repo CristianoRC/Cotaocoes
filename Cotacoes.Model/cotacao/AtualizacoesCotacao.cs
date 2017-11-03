@@ -13,7 +13,6 @@ namespace Cotacoes.Model
                 if (AtualizacoesCotacao.LiberarAtualizacao())
                 {
                     var listaCotacoes = CotacaoCSV.ListarCotacoes();
-                    
                     CotacaoService.Adicionar(listaCotacoes);
                 }
             }
@@ -33,9 +32,8 @@ namespace Cotacoes.Model
             {
                 try
                 {
-                    
                     var dataSaida = CotacaoService.ObterDataUltumaCotacao();
-                    
+
                     if (dataSaida == null)
                         return true;
                     else if ((DateTime.Now - dataSaida).TotalDays >= 1)

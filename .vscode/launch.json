@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceRoot}/Cotacao.MVC/bin/Debug/netcoreapp2.0/Cotacao.MVC.dll",
+            "program": "${workspaceRoot}/Cotacoes.MVC/bin/Debug/netcoreapp2.0/Cotacoes.MVC.dll",
             "args": [],
-            "cwd": "${workspaceRoot}/Cotacao.MVC",
+            "cwd": "${workspaceRoot}/Cotacoes.MVC",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

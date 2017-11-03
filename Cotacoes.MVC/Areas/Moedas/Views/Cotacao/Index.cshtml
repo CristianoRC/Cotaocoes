@@ -1,15 +1,12 @@
 ﻿@page
-
-@model Cotacao.Model.CotacaoMoeda
-
+@using Cotacoes.Model
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="container">
     <div clas class="row">
-        <h1 class="col-sm-offset-5">Lista de Cotações</h1>      
+        <h1 class="col-sm-offset-5">Lista de Cotações</h1>
     </div>
 
     <div class=row>
@@ -32,12 +29,13 @@
                 <th style="text-align:center">Paridade de compra</th>
                 <th style="text-align:center">Paridade de venda</th>
             </tr>
+
         @{
-            var listaCotacoes = Cotacao.Model.CotacaoMoeda.ListarUltimasCotacoes();
+            var listaCotacoes = CotacaoService.ListarUltimasCotacoes();
 
             foreach(var item in listaCotacoes)
             {
-                char tipoMoeda = @Cotacao.Model.Moeda.ObterTipoMoeda(item.CodigoMoeda);
+                char tipoMoeda = @MoedaService.ObterTipoMoeda(item.CodigoMoeda);
                 string CorTipo = " ";
 
                 if(tipoMoeda == 'A')
@@ -51,7 +49,7 @@
 
                 <tr class=@CorTipo style="text-align:center">
                     <td>@item.Data.ToString("dd/MM/yyyy")</td>
-                    <td>@Cotacao.Model.Moeda.ObterNomeMoeda(item.CodigoMoeda)</td>
+                    <td>@MoedaService.ObterNomeMoeda(item.CodigoMoeda)</td>
                     <td>@item.TaxaCompra</td>
                     <td>@item.TaxaVenda</td>
                     <td>@item.ParidadeCompra</td>

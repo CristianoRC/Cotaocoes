@@ -1,7 +1,7 @@
-using Cotacao.Model;
+using Cotacoes.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cotacao.MVC.Areas.PainelAdministrativo.Controllers
+namespace Cotacoes.MVC.Areas.PainelAdministrativo.Controllers
 {
     [Area("PainelAdministrativo")]
     public class HomeController : Controller

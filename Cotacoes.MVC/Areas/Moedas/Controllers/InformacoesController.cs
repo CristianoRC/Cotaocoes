@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Cotacao.Model;
+using Cotacoes.Model;
 using System.Collections.Generic;
 
 
-namespace Cotacao.MVC.Areas.Moedas.Controllers
+namespace Cotacoes.MVC.Areas.Moedas.Controllers
 {
     [Area("Moedas")]
     public class InformacoesController : Controller

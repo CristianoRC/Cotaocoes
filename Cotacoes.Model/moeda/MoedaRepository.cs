@@ -201,6 +201,8 @@ namespace Cotacoes.Model
             }
             catch (System.Exception e)
             {
+                Console.WriteLine(e.Message);
+
                 throw new Exception($"Erro ao obter a lista de moedas: {e.Message}");
             }
         }

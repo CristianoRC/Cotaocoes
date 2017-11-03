@@ -59,13 +59,9 @@ namespace Cotacoes.Model
 
         internal static DateTime DataUltumaCotacao()
         {
-            AtualizacoesCotacao.AtualizarCotacoes();
-
             var sql = @"select MAX(s.data)from public.cotacoes s";
             try
             {
-                AtualizacoesCotacao.AtualizarCotacoes();
-
                 AbrirConexao();
                 var cotacaoSaida = conexao.QueryFirst<DateTime>(sql);
                 FecharConexao();
@@ -81,7 +77,7 @@ namespace Cotacoes.Model
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
-            var sql = @"select * from cotacoes where data = 
+            var sql = @"select * from cotacoes where data =
                                (select MAX(s.data) from public.cotacoes s)";
 
             try

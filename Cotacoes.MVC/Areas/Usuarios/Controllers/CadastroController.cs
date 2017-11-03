@@ -1,7 +1,7 @@
-using Cotacao.Model;
+using Cotacoes.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cotacao.MVC.Areas.Usuarios.Controllers
+namespace Cotacoes.MVC.Areas.Usuarios.Controllers
 {
     [Area("Usuarios")]
     public class CadastroController : Controller
@@ -26,7 +26,7 @@ namespace Cotacao.MVC.Areas.Usuarios.Controllers
                 _usuario.Email = Email;
                 _usuario.Senha = Senha;
 
-                Usuario.Cadastrar(_usuario);
+                UsuarioService.Cadastrar(_usuario);
 
                 ViewBag.UltimoEmail = Email;
 

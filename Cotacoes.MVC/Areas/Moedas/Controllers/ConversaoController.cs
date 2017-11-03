@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Cotacao.Model;
+using Cotacoes.Model;
 
-namespace Cotacao.MVC.Areas.Moedas.Controllers
+namespace Cotacoes.MVC.Areas.Moedas.Controllers
 {
     [Area("Moedas")]
     public class ConversaoController : Controller
@@ -18,7 +18,7 @@ namespace Cotacao.MVC.Areas.Moedas.Controllers
         [HttpPost]
         public IActionResult ConverterParaDolar([FromForm]string Moeda, [FromForm]double Montante)
         {
-            var result = Convercao.ConverterParaDolar(Montante, Moeda);
+            var result = ConversaoService.ConverterParaDolar(Montante, Moeda);
 
             TempData["Data"] = result.DataConsulta;
             TempData["Valor"] = result.ValorConvertido;
@@ -29,10 +29,10 @@ namespace Cotacao.MVC.Areas.Moedas.Controllers
         [HttpPost]
         public IActionResult ConverterParaReal([FromForm]string Moeda, [FromForm]double Montante)
         {
-            var result = Convercao.ConverterParaReais(Montante, Moeda);
+            var result = ConversaoService.ConverterParaReais(Montante, Moeda);
 
             TempData["Data"] = result.DataConsulta;
-            TempData["Valor"] = System.Math.Round(result.ValorConvertido, 5);
+            TempData["Valor"] = result.ValorConvertido;
 
             return RedirectToAction("Index");
         }

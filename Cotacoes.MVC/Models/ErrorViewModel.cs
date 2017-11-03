@@ -1,6 +1,6 @@
 using System;
 
-namespace Cotacao.MVC.Models
+namespace Cotacoes.MVC.Models
 {
     public class ErrorViewModel
     {

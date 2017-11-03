@@ -1,7 +1,5 @@
 ﻿@page
 
-@model Cotacao.Model.Convercao
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -20,7 +18,6 @@
           <span class="input-group-addon">Sigla</span>
           <input id="Moeda" name="Moeda" class="form-control" placeholder="BRL" type="text" required="">
         </div>
-        
       </div>
     </div>
 
@@ -33,7 +30,7 @@
           <input id="Montante" name="Montante" class="form-control" placeholder="10,0" type="text" required="">
         </div>
       </div>
-    </div>      
+    </div>
 
   <!-- Multiple Radios -->
   <div class="form-group">
@@ -58,7 +55,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" for="Btn_Converter"></label>
     <div class="col-md-4">
-      <button id="Btn_Converter" name="Btn_Converter" class="btn btn-primary btn-info" onclick="teste()">
+      <button id="Btn_Converter" name="Btn_Converter" class="btn btn-primary btn-info" onclick="setAction()">
         <span class="glyphicon glyphicon-sort"></span> Converter</button>
     </div>
   </div>
@@ -85,10 +82,10 @@
 </div>
 
 <script>
-  function teste(){
+  function setAction(){
     var statusRadio = document.getElementById("Moeda-0").checked == true;
 
-    if(statusRadio){  
+    if(statusRadio){
       document.getElementById("FormCotacoes").action ="Conversao/ConverterParaDolar/";
     }
     else{

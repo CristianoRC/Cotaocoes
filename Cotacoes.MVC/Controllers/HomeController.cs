@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cotacao.MVC.Controllers
+namespace Cotacoes.MVC.Controllers
 {
     public class HomeController : Controller
     {

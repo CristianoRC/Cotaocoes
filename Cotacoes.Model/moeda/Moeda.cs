@@ -2,13 +2,14 @@ namespace Cotacoes.Model
 {
     public class Moeda
     {
-        public int Codigo { get; private set; }
-        public string Nome { get; private set; }
-        public string Sigla { get; private set; }
-        public string NomePais { get; private set; }
-        public int CodigoPais { get; private set; }
-        public char Tipo { get; private set; }
+        public int Codigo { get; set; }
+        public string Nome { get; set; }
+        public string Sigla { get; set; }
+        public string NomePais { get; set; }
+        public int CodigoPais { get; set; }
+        public char Tipo { get; set; }
 
+        public Moeda() { }
 
         public Moeda(int codigo)
         {
@@ -19,7 +20,6 @@ namespace Cotacoes.Model
         {
             atualizarPropriedades(MoedaService.ObterMoeda(sigla));
         }
-        
         private void atualizarPropriedades(Moeda moedaConsulta)
         {
             this.Codigo = moedaConsulta.Codigo;
