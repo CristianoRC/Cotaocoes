@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>@ViewData["Title"] - Painel administrativo</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/Adminstyles.css" />
+    </environment>
+	</head>
+	<body>
+        <!-- header -->
+        <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Painel de controle</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> @ViewData["NomeUsuario"] <span class="caret"></span></a>
+                            <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                                <li><a href="#">Perfil</a></li>
+                            </ul>
+                        </li>
+                        <li><a asp-area="Usuarios" asp-controller="Autenticacao" asp-action="Index"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Ferramentas</strong></a>
+                        <hr>
+                        <ul class="nav nav-stacked">
+                            <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#CotacoesMenu">Cotações <i class="glyphicon glyphicon-chevron-down"></i></a>
+                                <ul class="nav nav-stacked collapse in" id="CotacoesMenu">
+                                    <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Atualizar</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-link"></i> Excluir</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> Relatorio</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">Usuários <i class="glyphicon glyphicon-chevron-down"></i></a>
+                                <ul class="nav nav-stacked collapse in" id="userMenu">
+                                    <li><a href="#"><i class="glyphicon glyphicon-user"></i> Cadastrar</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-user"></i> Editar</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-user"></i> Excluir</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#ConfigMenu">Configurações <i class="glyphicon glyphicon-chevron-down"></i></a>
+                                <ul class="nav nav-stacked collapse in" id="ConfigMenu">
+                                    <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Options</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Transactions</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Rules</a></li>
+                                    <li><a href="#"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                </div>
+                <div class="col-md-9">
+                    <div class="Container">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/Adminscripts.js" asp-append-version="true"></script>
+        </environment>
+	</body>
+</html>

@@ -1,0 +1,98 @@
+﻿@page
+
+@model Cotacao.Model.Convercao
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="padding-top:50px">
+  <div class="panel panel-default">
+  <div class="panel-heading"><h4>Converção de moeda</h4></div>
+  <div class="panel-body">
+    <form id="FormCotacoes" class="form-horizontal" method="post" action="">
+    <fieldset>
+    <!-- Prepended text-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="Moeda">Moeda</label>
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-addon">Sigla</span>
+          <input id="Moeda" name="Moeda" class="form-control" placeholder="BRL" type="text" required="">
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Prepended text-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="Montante">Montante</label>
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-addon">valor</span>
+          <input id="Montante" name="Montante" class="form-control" placeholder="10,0" type="text" required="">
+        </div>
+      </div>
+    </div>      
+
+  <!-- Multiple Radios -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="Moeda">Converter para</label>
+    <div class="col-md-4">
+    <div class="radio">
+      <label for="Moeda-0">
+        <input type="radio" name="Moeda" id="Moeda-0" value="dolar" checked="checked">
+        Dolar
+      </label>
+    </div>
+    <div class="radio">
+      <label for="Moeda-1">
+        <input type="radio" name="Moeda" id="Moeda-1" value="real">
+        Real
+      </label>
+    </div>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="Btn_Converter"></label>
+    <div class="col-md-4">
+      <button id="Btn_Converter" name="Btn_Converter" class="btn btn-primary btn-info" onclick="teste()">
+        <span class="glyphicon glyphicon-sort"></span> Converter</button>
+    </div>
+  </div>
+  </fieldset>
+    @{
+      if(@ViewBag.Valor != -1 && @ViewBag.Valor != null)
+      {
+        <div class="alert alert-success" role="alert">
+          <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+          Valor: @ViewBag.Valor
+        </div>
+      }
+      else if(@ViewBag.Valor == -1)
+      {
+          <div class="alert alert-warning" role="alert">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            Erro ao converter, verifique a siga da moeda e montante!
+          </div>
+      }
+    }
+  </form>
+  </div>
+</div>
+</div>
+
+<script>
+  function teste(){
+    var statusRadio = document.getElementById("Moeda-0").checked == true;
+
+    if(statusRadio){  
+      document.getElementById("FormCotacoes").action ="Conversao/ConverterParaDolar/";
+    }
+    else{
+     document.getElementById("FormCotacoes").action = "Conversao/ConverterParaReal/";
+    }
+  }
+</script>
