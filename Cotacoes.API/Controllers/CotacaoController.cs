@@ -1,29 +1,29 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
-using Cotacao.Model;
+using Cotacoes.Model;
 using System.Collections.Generic;
 
-namespace Cotacao.API.Controllers
+namespace Cotacoes.API.Controllers
 {
     [Route("api/v1/[Controller]")]
     public class CotacoesController : Controller
     {
         [HttpGet]
-        public IEnumerable<CotacaoMoeda> Listar()
+        public IEnumerable<Cotacao> Listar()
         {
-            return CotacaoMoeda.ListarCotacoes();
+            return CotacaoService.ListarCotacoes();
         }
 
         [HttpGet("{siglaMoeda}")]
-        public CotacaoMoeda ObterCotacao(string siglaMoeda)
+        public Cotacao ObterCotacao(string siglaMoeda)
         {
-            return new CotacaoMoeda(siglaMoeda.ToUpper());
+            return new Cotacao(siglaMoeda);
         }
 
         [HttpGet("Data")]
         public DateTime Data()
         {
-            return CotacaoMoeda.ObterDataUltumaCotacao();
+            return CotacaoService.ObterDataUltumaCotacao();
         }
     }
 }

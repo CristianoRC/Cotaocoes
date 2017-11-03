@@ -1,21 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
-using Cotacao.Model;
+using Cotacoes.Model;
 
-namespace Cotacao.API.Controllers
+namespace Cotacoes.API.Controllers
 {
     [Route("api/v1/[Controller]")]
     public class ConversoesController : Controller
     {
         [HttpGet("Dolar/{valor}/{moeda}")]
-        public Convercao ConverterParaDolar(double valor, string moeda)
+        public Conversao ConverterParaDolar(double valor, string moeda)
         {
-            return Convercao.ConverterParaDolar(valor, moeda);
+            return ConversaoService.ConverterParaDolar(valor, moeda);
         }
 
         [HttpGet("Real/{valor}/{moeda}")]
-        public Convercao ConverterParaReal(double valor, string moeda)
+        public Conversao ConverterParaReal(double valor, string moeda)
         {
-            return Convercao.ConverterParaReais(valor, moeda);
+            return ConversaoService.ConverterParaReais(valor, moeda);
         }
     }
 }

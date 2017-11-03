@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Cotacao.Model;
+using Cotacoes.Model;
 using System.Collections.Generic;
 
-namespace Cotacao.API.Controllers
+namespace Cotacoes.API.Controllers
 {
     [Route("api/v1/[Controller]")]
     public class MoedasController : Controller
@@ -16,7 +16,7 @@ namespace Cotacao.API.Controllers
         [HttpGet]
         public IEnumerable<Moeda> Listar()
         {
-            return Moeda.Listar();
+            return MoedaService.Listar();
         }
     }
 }
