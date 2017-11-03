@@ -1,6 +1,6 @@
 namespace Cotacoes.Model
 {
-    public class UsuarioService
+    public static class UsuarioService
     {
 
         public static Usuario ObterInformacoes(string email)

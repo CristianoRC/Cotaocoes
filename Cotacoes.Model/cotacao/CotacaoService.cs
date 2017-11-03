@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Cotacoes.Model
 {
-    public class CotacaoService
+    public static class CotacaoService
     {
         public static Cotacao ObterUltima(int codigoMoeda)
         {
