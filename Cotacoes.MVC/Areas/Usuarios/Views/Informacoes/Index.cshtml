@@ -1,0 +1,21 @@
+﻿@page
+
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div style="margin-top:30px;">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>Informações usuário</h4></div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                    <a asp-controller="Informacoes" asp-action="Editar" id="Editar" name="Editar" class="btn btn-info">Editar informações</a>
+                </div>
+                <div class="col-md-2">
+                   <a asp-controller="Informacoes" asp-action="Excluir" id="Excluir" name="Excluir" class="btn btn-danger">Excluir contata</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

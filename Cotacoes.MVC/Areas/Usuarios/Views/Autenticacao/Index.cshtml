@@ -7,20 +7,18 @@
 <head>
 <link rel="stylesheet" href="~/css/styleLogin.css" />
 </head>
-  
 <div class="container">
   <div class="wrapper">
     <form onload="UltimoEmail()" class="form-signin" action="Autenticacao" method="post">
       <center><img src="https://cdn2.iconfinder.com/data/icons/flat-icons-19/512/Coin.png" height="100px;"></center>
       <input id="Email" style="margin-top:25px" type="text" class="form-control" name="Email" placeholder="Email" value="@ViewBag.UltimoEmail" required="" autofocus="" />
-      <input style="margin-top:10px" type="password" class="form-control" name="Senha" placeholder="Senha" required=""/>      
-      
+      <input style="margin-top:10px" type="password" class="form-control" name="Senha" placeholder="Senha" required=""/>
       <div id="erro" class="alert alert-danger" style="margin-top:20px;display: none;">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <span class="glyphicon glyphicon-asterisk"></span><strong> Erro:</strong> login ou senha inválidos
       </div>
 
-      <button style="margin-top:30px;margin-bottom:15px" class="btn btn-lg btn-primary btn-block" type="submit">Logar</button>   
+      <button style="margin-top:30px;margin-bottom:15px" class="btn btn-lg btn-primary btn-block" type="submit">Logar</button>
       <a style="text-decoration: none;" href=@Url.Action("Index","Cadastro") >Realizar cadastro</a>
     </form>
   </div>
@@ -36,4 +34,3 @@
     </script>
   }
 }
-    
