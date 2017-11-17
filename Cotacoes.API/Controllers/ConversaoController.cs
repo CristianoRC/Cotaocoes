@@ -6,14 +6,14 @@ namespace Cotacoes.API.Controllers
     [Route("api/v1/[Controller]")]
     public class ConversoesController : Controller
     {
-        [HttpGet("Dolar/{valor}/{moeda}")]
-        public Conversao ConverterParaDolar(double valor, string moeda)
+        [HttpGet("Dolar/{moeda}/{valor}")]
+        public Conversao ConverterParaDolar(string moeda, double valor)
         {
             return ConversaoService.ConverterParaDolar(valor, moeda);
         }
 
-        [HttpGet("Real/{valor}/{moeda}")]
-        public Conversao ConverterParaReal(double valor, string moeda)
+        [HttpGet("Real/{moeda}/{valor}")]
+        public Conversao ConverterParaReal(string moeda, double valor)
         {
             return ConversaoService.ConverterParaReais(valor, moeda);
         }

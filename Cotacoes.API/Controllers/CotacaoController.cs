@@ -11,10 +11,11 @@ namespace Cotacoes.API.Controllers
         [HttpGet]
         public IEnumerable<Cotacao> Listar()
         {
-            return CotacaoService.ListarCotacoes();
+            var teste = CotacaoService.ListarCotacoes();
+            return teste;
         }
 
-        [HttpGet("{siglaMoeda}")]
+        [HttpGet("Moeda/{siglaMoeda}")]
         public Cotacao ObterCotacao(string siglaMoeda)
         {
             return new Cotacao(siglaMoeda);

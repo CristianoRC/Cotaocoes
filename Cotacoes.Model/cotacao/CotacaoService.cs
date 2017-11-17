@@ -16,7 +16,7 @@ namespace Cotacoes.Model
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
-            return CotacaoRepository.ObterUltima(siglaMoeda);
+            return CotacaoRepository.ObterUltima(siglaMoeda.ToUpper());
         }
 
         public static void Adicionar(IEnumerable<Cotacao> listaDeCotacoes)
@@ -47,7 +47,7 @@ namespace Cotacoes.Model
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
-            return CotacaoRepository.ObterTaxaCompra(siglaMoeda);
+            return CotacaoRepository.ObterTaxaCompra(siglaMoeda.ToUpper());
 
         }
 
@@ -55,21 +55,21 @@ namespace Cotacoes.Model
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
-            return CotacaoRepository.ObterTaxaVenda(siglaMoeda);
+            return CotacaoRepository.ObterTaxaVenda(siglaMoeda.ToUpper());
         }
 
         public static double ObterParidadeCompra(string siglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
-            return CotacaoRepository.ObterParidadeCompra(siglaMoeda);
+            return CotacaoRepository.ObterParidadeCompra(siglaMoeda.ToUpper());
         }
 
         public static double ObterParidadeVenda(string siglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
-            return CotacaoRepository.ObterParidadeVenda(siglaMoeda);
+            return CotacaoRepository.ObterParidadeVenda(siglaMoeda.ToUpper());
         }
     }
 }

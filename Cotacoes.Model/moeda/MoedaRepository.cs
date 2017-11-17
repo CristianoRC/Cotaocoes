@@ -187,9 +187,9 @@ namespace Cotacoes.Model
             }
         }
 
-        internal static IEnumerable<Moeda> Listar()
+        public static IEnumerable<Moeda> Listar()
         {
-            var sql = "select * from Moedas";
+            var sql = "select * from public.Moedas";
 
             try
             {

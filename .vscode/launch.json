@@ -9,14 +9,14 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Cotacoes.MVC/bin/Debug/netcoreapp2.0/Cotacoes.MVC.dll",
+            "program": "${workspaceFolder}/Cotacoes.API/bin/Debug/netcoreapp2.0/Cotacoes.API.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Cotacoes.MVC",
+            "cwd": "${workspaceFolder}/Cotacoes.API",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
                 "enabled": true,
-                "args": "${auto-detect-url}",
+                "args": "${auto-detect-url}/api/v1/",
                 "windows": {
                     "command": "cmd.exe",
                     "args": "/C start ${auto-detect-url}"
