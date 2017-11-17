@@ -2,9 +2,9 @@
 
 ###### Metas
 
-- [x] API
+- [] API
 - [x] Model
-- [x] ASP .NET MVC - Razor
+- [] ASP .NET MVC - Razor
 - [ ] ASP .NET MVC - JS
 - [ ] Arduino - Display
 - [ ] Relatorios
