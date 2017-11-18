@@ -18,15 +18,15 @@ namespace Cotacoes.Model
 
                 return usuTemp;
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception($"Erro ao carregar informações do usuário: {e.Message}");
+                return new Usuario { ID = -1 };
             }
         }
 
         internal static void Adicionar(Usuario usuario)
         {
-            var sql = @"Insert into usuarios (nome,email,senha,administrador) 
+            var sql = @"Insert into usuarios (nome,email,senha,administrador)
                         values(@nome,@email,@senha,@administrador)";
             try
             {
