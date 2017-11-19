@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Cotacoes.API.Controllers
 {
     [Route("api/v1/[Controller]")]
-    public class MoedasController : Controller
+    public class MoedaController : Controller
     {
         [HttpGet("{sigla}")]
         public Moeda ObterInformacoes(string sigla)

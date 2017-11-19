@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Cotacoes.API.Controllers
 {
     [Route("api/v1/[Controller]")]
-    public class CotacoesController : Controller
+    public class CotacaoController : Controller
     {
         [HttpGet]
         public IEnumerable<Cotacao> Listar()

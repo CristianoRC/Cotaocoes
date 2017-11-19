@@ -113,7 +113,7 @@ namespace Cotacoes.Model
         {
             try
             {
-                return conexao.Query<Usuario>("select ID, Nome, Email, Administrador from usuarios");
+                return conexao.Query<Usuario>("select ID, Nome, Email, Administrador from usuarios order by ID");
             }
             catch (System.Exception e)
             {

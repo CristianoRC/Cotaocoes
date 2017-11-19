@@ -4,7 +4,7 @@ using Cotacoes.Model;
 namespace Cotacoes.API.Controllers
 {
     [Route("api/v1/[Controller]")]
-    public class ConversoesController : Controller
+    public class ConversaoController : Controller
     {
         [HttpGet("Dolar/{moeda}/{valor}")]
         public Conversao ConverterParaDolar(string moeda, double valor)
