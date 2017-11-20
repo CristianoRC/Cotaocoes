@@ -11,7 +11,7 @@ namespace Cotacoes.API.Controllers
         [HttpGet]
         public IEnumerable<Cotacao> Listar()
         {
-            var teste = CotacaoService.ListarCotacoes();
+            var teste = CotacaoService.ListarUltimasCotacoes();
             return teste;
         }
 
