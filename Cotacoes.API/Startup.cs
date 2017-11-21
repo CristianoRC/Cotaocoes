@@ -26,6 +26,15 @@ namespace Cotacoes.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // Adicionando Cors
+            services.AddCors(o => o.AddPolicy("Login", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddTransient<Cotacoes.Model.Usuario>();
 
             var signingConfigurations = new SigningConfigurations();
@@ -85,6 +94,9 @@ namespace Cotacoes.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Ativando Cors
+            app.UseCors("Login");
 
             app.UseMvc();
         }

@@ -5,6 +5,7 @@ using System.Security.Principal;
 using Cotacoes.API.Token;
 using Cotacoes.Model;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -15,6 +16,7 @@ namespace Cotacoes.API.Controllers
     {
         [AllowAnonymous]
         [HttpPost]
+        [EnableCors("Login")]
         public object Autenticar([FromBody] Usuario usuario,
                                [FromServices]SigningConfigurations signingConfigurations,
                                [FromServices]TokenConfigurations tokenConfigurations)
