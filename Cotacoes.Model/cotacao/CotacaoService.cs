@@ -43,7 +43,7 @@ namespace Cotacoes.Model
             return CotacaoRepository.Listar();
         }
 
-        public static double ObterTaxaCompra(string siglaMoeda)
+        public static decimal ObterTaxaCompra(string siglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
@@ -51,21 +51,21 @@ namespace Cotacoes.Model
 
         }
 
-        public static double ObterTaxaVenda(string siglaMoeda)
+        public static decimal ObterTaxaVenda(string siglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
             return CotacaoRepository.ObterTaxaVenda(siglaMoeda.ToUpper());
         }
 
-        public static double ObterParidadeCompra(string siglaMoeda)
+        public static decimal ObterParidadeCompra(string siglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
             return CotacaoRepository.ObterParidadeCompra(siglaMoeda.ToUpper());
         }
 
-        public static double ObterParidadeVenda(string siglaMoeda)
+        public static decimal ObterParidadeVenda(string siglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 

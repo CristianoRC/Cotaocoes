@@ -114,7 +114,7 @@ namespace Cotacoes.Model
             }
         }
 
-        internal static double ObterTaxaCompra(string siglaMoeda)
+        internal static decimal ObterTaxaCompra(string siglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
@@ -126,7 +126,7 @@ namespace Cotacoes.Model
                 AtualizacoesCotacao.AtualizarCotacoes();
 
                 AbrirConexao();
-                var taxaCompra = conexao.QueryFirst<double>(sql, new { sigla = siglaMoeda });
+                var taxaCompra = conexao.QueryFirst<decimal>(sql, new { sigla = siglaMoeda });
                 FecharConexao();
                 return taxaCompra;
             }
@@ -136,7 +136,7 @@ namespace Cotacoes.Model
             }
         }
 
-        internal static double ObterTaxaVenda(string siglaMoeda)
+        internal static decimal ObterTaxaVenda(string siglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
@@ -148,7 +148,7 @@ namespace Cotacoes.Model
                 AtualizacoesCotacao.AtualizarCotacoes();
 
                 AbrirConexao();
-                var taxaCompra = conexao.QueryFirst<double>(sql, new { sigla = siglaMoeda });
+                var taxaCompra = conexao.QueryFirst<decimal>(sql, new { sigla = siglaMoeda });
                 FecharConexao();
                 return taxaCompra;
             }
@@ -158,7 +158,7 @@ namespace Cotacoes.Model
             }
         }
 
-        internal static double ObterParidadeCompra(string siglaMoeda)
+        internal static decimal ObterParidadeCompra(string siglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
@@ -170,7 +170,7 @@ namespace Cotacoes.Model
                 AtualizacoesCotacao.AtualizarCotacoes();
 
                 AbrirConexao();
-                var taxaCompra = conexao.QueryFirst<double>(sql, new { sigla = siglaMoeda });
+                var taxaCompra = conexao.QueryFirst<decimal>(sql, new { sigla = siglaMoeda });
                 FecharConexao();
                 return taxaCompra;
             }
@@ -180,7 +180,7 @@ namespace Cotacoes.Model
             }
         }
 
-        internal static double ObterParidadeVenda(string siglaMoeda)
+        internal static decimal ObterParidadeVenda(string siglaMoeda)
         {
             AtualizacoesCotacao.AtualizarCotacoes();
 
@@ -192,7 +192,7 @@ namespace Cotacoes.Model
                 AtualizacoesCotacao.AtualizarCotacoes();
 
                 AbrirConexao();
-                var taxaCompra = conexao.QueryFirst<double>(sql, new { sigla = siglaMoeda });
+                var taxaCompra = conexao.QueryFirst<decimal>(sql, new { sigla = siglaMoeda });
                 FecharConexao();
                 return taxaCompra;
             }

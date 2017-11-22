@@ -60,10 +60,10 @@ namespace Cotacoes.Model
             CotacaoBase.CodigoMoeda = Convert.ToInt16(informacoes[1]);
             //2 E 3 --> Eram os códigos e o Tipo, mas a busca é feita via banco
 
-            CotacaoBase.TaxaCompra = Convert.ToDouble(informacoes[4]);
-            CotacaoBase.TaxaVenda = Convert.ToDouble(informacoes[5]);
-            CotacaoBase.ParidadeCompra = Convert.ToDouble(informacoes[6]);
-            CotacaoBase.ParidadeVenda = Convert.ToDouble(informacoes[7]);
+            CotacaoBase.TaxaCompra = Convert.ToDecimal(informacoes[4]);
+            CotacaoBase.TaxaVenda = Convert.ToDecimal(informacoes[5]);
+            CotacaoBase.ParidadeCompra = Convert.ToDecimal(informacoes[6]);
+            CotacaoBase.ParidadeVenda = Convert.ToDecimal(informacoes[7]);
 
             return CotacaoBase;
         }

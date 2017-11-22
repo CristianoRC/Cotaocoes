@@ -4,10 +4,10 @@ namespace Cotacoes.Model
 {
     public class Conversao
     {
-        public Double ValorConvertido { get; set; }
+        public decimal ValorConvertido { get; set; }
         public DateTime DataConsulta { get; set; }
         
-        public Conversao(double valor)
+        public Conversao(decimal valor)
         {
             ValorConvertido = valor;
             DataConsulta = CotacaoService.ObterDataUltumaCotacao();

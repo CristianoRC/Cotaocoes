@@ -6,10 +6,10 @@ namespace Cotacoes.Model
     {
         public DateTime Data { get; set; }
         public int CodigoMoeda { get; set; }
-        public Double TaxaCompra { get; set; }
-        public Double TaxaVenda { get; set; }
-        public Double ParidadeCompra { get; set; }
-        public Double ParidadeVenda { get; set; }
+        public decimal TaxaCompra { get; set; }
+        public decimal TaxaVenda { get; set; }
+        public decimal ParidadeCompra { get; set; }
+        public decimal ParidadeVenda { get; set; }
 
 
         public Cotacao(int CodigoMoeda)

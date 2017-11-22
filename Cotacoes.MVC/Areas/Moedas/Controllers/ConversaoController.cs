@@ -16,7 +16,7 @@ namespace Cotacoes.MVC.Areas.Moedas.Controllers
         }
 
         [HttpPost]
-        public IActionResult ConverterParaDolar([FromForm]string Moeda, [FromForm]double Montante)
+        public IActionResult ConverterParaDolar([FromForm]string Moeda, [FromForm]decimal Montante)
         {
             var result = ConversaoService.ConverterParaDolar(Montante, Moeda);
 
@@ -27,7 +27,7 @@ namespace Cotacoes.MVC.Areas.Moedas.Controllers
         }
 
         [HttpPost]
-        public IActionResult ConverterParaReal([FromForm]string Moeda, [FromForm]double Montante)
+        public IActionResult ConverterParaReal([FromForm]string Moeda, [FromForm]decimal Montante)
         {
             var result = ConversaoService.ConverterParaReais(Montante, Moeda);
 
